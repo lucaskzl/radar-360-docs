@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RADAR 360 — Documentação Técnica | Positivo S+ / INCRA</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,600;0,9..40,800;0,9..40,900;1,9..40,300&display=swap" rel="stylesheet">
+    <style>
+        *, ::before, ::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --green: #1f7a5a; --green-light: #3fa883; --blue: #3b82f6; --amber: #f59e0b;
+            --red: #ef4444; --violet: #8b5cf6; --teal: #0d9488;
+            --bg: #e8eaed; --card: #f5f6f8; --border: rgba(0,0,0,0.08);
+            --text: #1a1a2e; --muted: #6b7280;
+        }
+        body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 40px 20px; }
+        .page { max-width: 900px; margin: 0 auto; }
+
+        /* CAPA */
+        .cover {
+            background: linear-gradient(135deg, #080c14 0%, #0f1a2e 50%, #081a10 100%);
+            border-radius: 28px; padding: 60px 56px; margin-bottom: 32px;
+            display: flex; align-items: center; justify-content: space-between; gap: 40px;
+            position: relative; overflow: hidden;
+        }
+        .cover::before {
+            content: ''; position: absolute; top: -80px; right: -80px;
+            width: 340px; height: 340px; border-radius: 50%;
+            background: radial-gradient(circle, rgba(31,122,90,0.18) 0%, transparent 70%);
+        }
+        .cover-body { flex: 1; position: relative; z-index: 1; }
+        .cover-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: rgba(31,122,90,0.15); border: 1px solid rgba(31,122,90,0.30);
+            border-radius: 50px; padding: 6px 16px; margin-bottom: 22px;
+        }
+        .cover-badge span { font-size: 11px; font-weight: 700; color: #3fa883; letter-spacing: 1px; text-transform: uppercase; }
+        .cover-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: #3fa883; animation: pulse 2s infinite; }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+        .cover h1 { font-size: 46px; font-weight: 900; line-height: 1.1; letter-spacing: -1.5px; color: #fff; margin-bottom: 8px; }
+        .cover h1 span { color: #3fa883; display: block; font-size: 32px; }
+        .cover-sub { font-size: 16px; color: rgba(255,255,255,0.55); line-height: 1.6; margin-bottom: 28px; max-width: 440px; }
+        .cover-meta { display: flex; gap: 14px; flex-wrap: wrap; }
+        .cover-meta-item { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 50px; padding: 8px 18px; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.65); }
+
+        /* SECTION */
+        .section { margin-bottom: 32px; }
+        .section-label {
+            font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+            margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border);
+            display: flex; align-items: center; gap: 8px;
+        }
+
+        /* CARD BASE */
+        .card {
+            background: var(--card); border: 1px solid var(--border);
+            border-radius: 20px; padding: 28px 32px; margin-bottom: 14px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+        }
+        .card-header { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 20px; }
+        .card-icon {
+            width: 50px; height: 50px; border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 22px; flex-shrink: 0;
+        }
+        .card-chapter { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .card-title { font-size: 20px; font-weight: 800; color: var(--text); }
+
+        /* GRIDS & MINI CARDS */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+        .mini-card { border-radius: 14px; padding: 18px; border: 1px solid; }
+        .mini-card b { display: block; font-size: 13px; margin-bottom: 6px; }
+        .mini-card p { font-size: 12px; color: var(--muted); line-height: 1.55; }
+
+        /* TECH PILL */
+        .tech-row { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 12px; }
+        .tech-pill { border-radius: 10px; padding: 7px 14px; font-size: 12px; font-weight: 800; white-space: nowrap; flex-shrink: 0; border: 1px solid; width: 150px; text-align: center; }
+        .tech-desc { font-size: 13px; color: var(--muted); line-height: 1.65; padding-top: 5px; }
+
+        /* IMPACT */
+        .impact-num { font-size: 40px; font-weight: 900; line-height: 1; }
+        .impact-label { font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+
+        /* MODULE BLOCK */
+        .mod-item { background: rgba(0,0,0,0.03); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
+        .mod-item b { font-size: 12px; color: var(--text); display: block; margin-bottom: 4px; }
+        .mod-item p { font-size: 11px; color: var(--muted); line-height: 1.5; }
+
+        /* PROBLEM */
+        .problem-item { display: flex; align-items: flex-start; gap: 10px; background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.15); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; }
+        .problem-icon { color: var(--red); font-size: 14px; margin-top: 1px; flex-shrink: 0; }
+        .problem-text { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+        /* AUTHOR */
+        .author-card { display: flex; align-items: center; gap: 18px; background: rgba(0,0,0,0.04); border: 1px solid var(--border); border-radius: 14px; padding: 18px 22px; margin-bottom: 15px; }
+        .author-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--green); color: #fff; font-size: 24px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .author-name { font-size: 16px; font-weight: 800; color: var(--text); }
+        .author-role { font-size: 12px; color: var(--muted); }
+        
+        .footer { text-align: center; padding: 32px 0 16px; border-top: 1px solid var(--border); margin-top: 40px; font-size: 12px; color: var(--muted); line-height: 1.7; }
+    </style>
+</head>
+<body>
+<div class="page">
+
+    <!-- CAPA -->
+    <div class="cover">
+        <div class="cover-body">
+            <div class="cover-badge">
+                <div class="dot"></div>
+                <span>Documentação Técnica Oficial</span>
+            </div>
+            <h1>RADAR 360<span>Hub Operacional NOC</span></h1>
+            <p class="cover-sub">Solução de automação e monitoramento operacional desenvolvida para a Central de Atendimento INCRA &mdash; Positivo S+. Documentação técnica completa para apresentação institucional.</p>
+            <div class="cover-meta">
+                <div class="cover-meta-item">v3.0.1 &bull; 2026</div>
+                <div class="cover-meta-item">Autor: Lucas Martins Lima</div>
+                <div class="cover-meta-item">INCRA &bull; Positivo S+</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAP 01 -->
+    <div class="section">
+        <div class="section-label" style="color:var(--red)">&#9632; Capítulo 01 &mdash; Contexto e Problema</div>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon" style="background:rgba(239,68,68,0.10);">&#128680;</div>
+                <div>
+                    <div class="card-chapter" style="color:var(--red)">Capítulo 01</div>
+                    <div class="card-title">Contexto Operacional e Problema Identificado</div>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div>
+                    <p style="font-size:13px; line-height:1.75; margin-bottom:16px;">A Central de Atendimento de TI do INCRA, operada pela <strong>Positivo S+</strong>, enfrentava uma limitação crítica: a ausência de uma ferramenta centralizada que permitisse ao analista monitorar em tempo real o status de <strong>SLA (Service Level Agreement)</strong> dos chamados, acessar respostas padronizadas e registrar produtividade de maneira integrada. O sistema Cervello ESM não oferecia nativamente essa visibilidade operacional.</p>
+                    <p style="font-size:13px; line-height:1.75;">A Gerência de Suporte (GERTI/INCRA) demandava indicadores de desempenho mensais por analista. Identificou-se a necessidade de uma solução não-invasiva que não dependesse de acesso ao servidor, de APIs de terceiros ou de aprovação de TI para implantação.</p>
+                </div>
+                <div>
+                    <p style="font-size:12px; font-weight:700; color:var(--red); text-transform:uppercase; margin-bottom:12px;">Sintomas Identificados</p>
+                    <div class="problem-item"><div class="problem-icon">&#10006;</div><div class="problem-text">Chamados vencendo sem alerta visual ou sonoro ao analista responsável.</div></div>
+                    <div class="problem-item"><div class="problem-icon">&#10006;</div><div class="problem-text">Respostas redigidas do zero a cada atendimento, consumindo até 4 minutos por ticket.</div></div>
+                    <div class="problem-item"><div class="problem-icon">&#10006;</div><div class="problem-text">Ausência de indicadores de desempenho por turno.</div></div>
+                    <div class="problem-item"><div class="problem-icon">&#10006;</div><div class="problem-text">Contatos de gestores de sistemas dispersos, sem acesso ágil.</div></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAP 02 -->
+    <div class="section">
+        <div class="section-label" style="color:var(--green)">&#9632; Capítulo 02 &mdash; Solução Desenvolvida</div>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon" style="background:rgba(31,122,90,0.10);">&#128640;</div>
+                <div>
+                    <div class="card-chapter" style="color:var(--green)">Capítulo 02</div>
+                    <div class="card-title">Solução Desenvolvida &mdash; RADAR 360</div>
+                </div>
+            </div>
+            <p style="font-size:13px; line-height:1.75; margin-bottom:22px;">O <strong>RADAR 360</strong> é um <em>hub operacional integrado</em> desenvolvido sob o paradigma de <strong>Extensão Nativa para Google Chrome</strong>. A solução atua como uma camada de inteligência e produtividade sobreposta ao sistema existente, oferecendo uma visão unificada e em tempo real de toda a operação de suporte.</p>
+            <div class="grid-3">
+                <div class="mini-card" style="background:rgba(31,122,90,0.05); border-color:rgba(31,122,90,0.15);">
+                    <b style="color:var(--green);">Monitor SLA em Tempo Real</b>
+                    <p>Integração via API REST com o backend Cervello, lendo e processando todos os chamados abertos a cada 10 segundos.</p>
+                </div>
+                <div class="mini-card" style="background:rgba(59,130,246,0.05); border-color:rgba(59,130,246,0.15);">
+                    <b style="color:var(--blue);">RPA de Respostas</b>
+                    <p>Biblioteca de templates com preenchimento automático de dados do chamado (nome, ticket, CPF, login) via regex.</p>
+                </div>
+                <div class="mini-card" style="background:rgba(245,158,11,0.05); border-color:rgba(245,158,11,0.15);">
+                    <b style="color:var(--amber);">Mini-BI Operacional</b>
+                    <p>Engine de telemetria que registra, agrega e apresenta dados de produtividade por analista e volume mensal.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAP 03 -->
+    <div class="section">
+        <div class="section-label" style="color:#6366f1">&#9632; Capítulo 03 &mdash; Stack Tecnológico</div>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon" style="background:rgba(99,102,241,0.10);">&#128187;</div>
+                <div>
+                    <div class="card-chapter" style="color:#6366f1">Capítulo 03</div>
+                    <div class="card-title">Stack Tecnológico e Arquitetura</div>
+                </div>
+            </div>
+            <div class="tech-row"><div class="tech-pill" style="background:rgba(245,158,11,0.10);border-color:rgba(245,158,11,0.25);color:var(--amber);">JavaScript ES6+</div><div class="tech-desc">Linguagem principal. IIFE para encapsulamento de escopo, arrow functions e Optional Chaining. Estrutura não-invasiva ao código-fonte do Cervello.</div></div>
+            <div class="tech-row"><div class="tech-pill" style="background:rgba(59,130,246,0.10);border-color:rgba(59,130,246,0.25);color:var(--blue);">Chrome Extension API</div><div class="tech-desc">Ecossistema nativo do navegador. O script atua via Content Scripts injetados em document_idle, rodando com alta performance V8.</div></div>
+            <div class="tech-row"><div class="tech-pill" style="background:rgba(31,122,90,0.10);border-color:rgba(31,122,90,0.25);color:var(--green);">AJAX / REST API</div><div class="tech-desc">O Motor V8 realiza chamadas ao endpoint reutilizando a sessão autenticada do analista.</div></div>
+            <div class="tech-row"><div class="tech-pill" style="background:rgba(239,68,68,0.10);border-color:rgba(239,68,68,0.25);color:var(--red);">Web Audio API</div><div class="tech-desc">Geração de alertas sonoros via síntese de oscilador senoidal. Zero dependência de arquivos externos.</div></div>
+            <div class="tech-row"><div class="tech-pill" style="background:rgba(139,92,246,0.10);border-color:rgba(139,92,246,0.25);color:var(--violet);">LocalStorage API</div><div class="tech-desc">Persistência de dados (assinatura, tema, notas, produtividade) sem servidor próprio ou banco de dados externo.</div></div>
+            <div class="tech-row"><div class="tech-pill" style="background:rgba(13,148,136,0.10);border-color:rgba(13,148,136,0.25);color:var(--teal);">CSS Design System</div><div class="tech-desc">Tokens de cor via CSS Custom Properties. Sistema Bento Grid com suporte nativo a dark/light mode.</div></div>
+        </div>
+    </div>
+
+    <!-- CAP 04 -->
+    <div class="section">
+        <div class="section-label" style="color:var(--teal)">&#9632; Capítulo 04 &mdash; Módulos e Arquitetura</div>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon" style="background:rgba(13,148,136,0.10);">&#128268;</div>
+                <div>
+                    <div class="card-chapter" style="color:var(--teal)">Capítulo 04</div>
+                    <div class="card-title">Módulos e Arquitetura Funcional</div>
+                </div>
+            </div>
+            <p style="font-size:13px; color:var(--muted); line-height:1.7; margin-bottom:18px;">A solução é estruturada em <strong>13 módulos funcionais independentes</strong>, seguindo o princípio de responsabilidade única (SRP).</p>
+            <div class="grid-2">
+                <div class="mod-item"><b>01 &middot; Variáveis e Constantes</b><p>Configuração centralizada de cores, versão, coleções estáticas e estado global.</p></div>
+                <div class="mod-item"><b>02 &middot; Motor de Contexto</b><p>Extrai dados do chamado via regex e DOM traversal para preenchimento automático.</p></div>
+                <div class="mod-item"><b>03 &middot; Motor SLA V8</b><p>Processamento JSON, cálculo de SLA em minutos, categorização em buckets de criticidade.</p></div>
+                <div class="mod-item"><b>04 &middot; Radar Flutuante</b><p>Widget arrastável persistente com resumo do SLA visível em todas as páginas.</p></div>
+                <div class="mod-item"><b>05 &middot; RPA de Respostas</b><p>CRUD de templates com favoritos e injeção direta no editor Kendo.</p></div>
+                <div class="mod-item"><b>06 &middot; Auto-Save Inteligente</b><p>Listener de eventos DOM que registra produtividade do analista automaticamente.</p></div>
+                <div class="mod-item"><b>07 &middot; Mini-BI Mensal</b><p>Agregação de dados com exportação XLS nativa e relatório de turno.</p></div>
+                <div class="mod-item"><b>08 &middot; Interface Bento UI</b><p>Sistema de design proprietário com CSS Grid 12 colunas, glassmorphism e dark mode.</p></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAP 05 -->
+    <div class="section">
+        <div class="section-label" style="color:var(--amber)">&#9632; Capítulo 05 &mdash; Impacto e Resultados</div>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon" style="background:rgba(245,158,11,0.10);">&#128200;</div>
+                <div>
+                    <div class="card-chapter" style="color:var(--amber)">Capítulo 05</div>
+                    <div class="card-title">Impacto Operacional e Resultados</div>
+                </div>
+            </div>
+            <div class="grid-3" style="margin-bottom:22px;">
+                <div style="text-align:center; background:rgba(31,122,90,0.05); border:1px solid rgba(31,122,90,0.15); border-radius:16px; padding:22px;">
+                    <div class="impact-num" style="color:var(--green);">~70%</div>
+                    <div class="impact-label">Redução no tempo de redação de respostas por atendimento</div>
+                </div>
+                <div style="text-align:center; background:rgba(59,130,246,0.05); border:1px solid rgba(59,130,246,0.15); border-radius:16px; padding:22px;">
+                    <div class="impact-num" style="color:var(--blue);">100%</div>
+                    <div class="impact-label">Visibilidade em tempo real do status de SLA da fila</div>
+                </div>
+                <div style="text-align:center; background:rgba(245,158,11,0.05); border:1px solid rgba(245,158,11,0.15); border-radius:16px; padding:22px;">
+                    <div class="impact-num" style="color:var(--amber);">R$ 0</div>
+                    <div class="impact-label">Custo de infraestrutura adicional &mdash; roda no navegador</div>
+                </div>
+            </div>
+            <p style="font-size:13px; color:var(--muted); line-height:1.75;">A solução demonstrou impacto direto na qualidade do atendimento, com redução significativa no número de chamados vencidos. A biblioteca eliminou inconsistências na comunicação. O Mini-BI passou a fornecer dados objetivos para reuniões de gestão, substituindo relatórios manuais por exportações automáticas.</p>
+        </div>
+    </div>
+
+    <!-- CAP 06 -->
+    <div class="section">
+        <div class="section-label" style="color:var(--amber)">&#9632; Capítulo 06 &mdash; Propriedade Intelectual</div>
+        <div class="card" style="border:1.5px solid rgba(252,211,77,0.25); background:linear-gradient(135deg, rgba(252,211,77,0.04) 0%, var(--card) 60%);">
+            <div class="card-header">
+                <div class="card-icon" style="background:rgba(252,211,77,0.12);">&#9878;</div>
+                <div>
+                    <div class="card-chapter" style="color:var(--amber)">Capítulo 06 &middot; Legal</div>
+                    <div class="card-title">Propriedade Intelectual e Direitos Autorais</div>
+                </div>
+            </div>
+            <p style="font-size:13px; color:var(--muted); line-height:1.75; margin-bottom:16px;">Esta solução de software, incluindo algoritmos, RPA, engine de SLA, Bento UI, biblioteca de templates e documentação correlata, constitui obra intelectual protegida pela <strong>Lei de Direitos Autorais (Lei Nº 9.610/98)</strong>, de propriedade exclusiva do autor.</p>
+            <div class="author-card">
+                <div class="author-avatar">L</div>
+                <div>
+                    <div class="author-name">LUCAS MARTINS LIMA</div>
+                    <div class="author-role">Engenharia de Soluções &middot; Positivo S+ / INCRA &middot; Brasília-DF</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p><strong>RADAR 360 Hub Operacional NOC</strong> &mdash; v3.0.1 <br>
+        Desenvolvido por <strong>Lucas Martins Lima</strong> &bull; Positivo S+ / INCRA &bull; Brasília-DF<br>
+        <em>Documento de apresentação técnica profissional.</em></p>
+    </div>
+
+</div>
+</body>
+</html>
