@@ -12,21 +12,15 @@
         
         /* VARIAVEIS DE TEMA (CLARO / ESCURO) */
         :root {
-            /* Tema Claro (Light) */
             --bg: #f8fafc; --text: #0f172a; --card: #ffffff; --border: #e2e8f0; --muted: #64748b;
-            /* Cores da Marca */
             --green: #1f7a5a; --green-light: #3fa883; --blue: #3b82f6; --amber: #f59e0b;
             --red: #ef4444; --violet: #8b5cf6; --teal: #0d9488;
-            
-            /* Variaveis exclusivas dos Mockups (Telas do App) */
             --mk-bg: #e4e7ec; --mk-card: #f5f6f8; --mk-text: #1a1a2e; --mk-border: rgba(0,0,0,0.08);
             --mk-muted: #6b7280; --mk-glass: rgba(255,255,255,0.7);
         }
 
         [data-theme="dark"] {
-            /* Tema Escuro (Dark) */
             --bg: #080c14; --text: #f8fafc; --card: #101420; --border: rgba(255,255,255,0.08); --muted: #94a3b8;
-            /* Mockups Dark Mode */
             --mk-bg: #0b0f19; --mk-card: #161b26; --mk-text: #e8edf5; --mk-border: rgba(255,255,255,0.08);
             --mk-muted: #7a8499; --mk-glass: rgba(16,20,32,0.8);
         }
@@ -106,6 +100,52 @@
 
         /* ====== FOOTER ====== */
         .footer { text-align: center; padding: 32px 0 16px; border-top: 1px solid var(--border); margin-top: 40px; font-size: 12px; color: var(--muted); line-height: 1.7; }
+
+        /* ========================================= */
+        /* MEDIA QUERIES (DESIGN RESPONSIVO CELULAR) */
+        /* ========================================= */
+        @media (max-width: 768px) {
+            body { padding: 20px 15px; }
+            
+            /* Ajustes da Capa */
+            .cover { padding: 40px 25px; text-align: center; }
+            .cover::before { display: none; /* Remove círculo decorativo para não vazar a tela */ }
+            .cover h1 { font-size: 32px; }
+            .cover h1 span { font-size: 22px; }
+            .cover-meta { justify-content: center; }
+            
+            /* Quebra das Grades */
+            .grid-2, .grid-3, .bi-grid { 
+                grid-template-columns: 1fr; 
+                gap: 20px; 
+            }
+            
+            /* Card Geral */
+            .card { padding: 20px; }
+            .card-header { flex-direction: column; gap: 10px; align-items: center; text-align: center; }
+            
+            /* Mockups e Paineis */
+            .mockup-container { padding: 50px 15px 20px 15px; }
+            .mockup-title { width: 100%; text-align: center; }
+
+            /* Bento Grid vira coluna única no celular */
+            .bento-grid { 
+                display: flex; 
+                flex-direction: column; 
+                gap: 15px; 
+            }
+            .bc-profile, .bc-rpa, .bc-links, .bc-postit, .bc-sla, .bc-bi, .bc-utils { 
+                border-left: none; /* Limpa bordas específicas laterais */
+            }
+            .bc-profile { border-top: 3px solid var(--green); text-align: center; }
+            
+            /* Catálogo RPA empilhando menu e texto */
+            .rpa-container { flex-direction: column; height: auto; }
+            .rpa-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--mk-border); padding-right: 0; padding-bottom: 20px; }
+            
+            /* Dashboard Cards empilhando */
+            .metrics-grid { grid-template-columns: 1fr; gap: 15px; }
+        }
     </style>
 </head>
 <body>
@@ -114,7 +154,7 @@
     <!-- THEME TOGGLE -->
     <div class="top-nav">
         <button class="theme-toggle" onclick="toggleTheme()">
-            <i class="fas fa-moon"></i> Modo Noturno
+            <i class="fas fa-moon" style="color: #8b5cf6;"></i> Modo Noturno
         </button>
     </div>
 
@@ -191,7 +231,7 @@
     <!-- CAP 03: MOCKUP HUB BENTO -->
     <div class="section">
         <div class="section-label" style="color:#f59e0b">&#9632; Capítulo 03 &mdash; UI Design (Hub Principal)</div>
-        <p class="p-text">O Design System proprietário foi focado na estética de <strong>Glassmorphism</strong> e organizado num <strong>Bento Grid CSS</strong> (12 colunas). Ele atua como o menu central flutuante para o analista, adaptando-se instantaneamente ao tema (Claro/Escuro).</p>
+        <p class="p-text">O Design System proprietário foi focado na estética de <strong>Glassmorphism</strong> e organizado num <strong>Bento Grid CSS</strong>. Ele atua como o menu central flutuante para o analista, adaptando-se instantaneamente ao tema (Claro/Escuro).</p>
         
         <div class="mockup-container">
             <div class="mockup-header-bar">
@@ -216,7 +256,7 @@
                 <!-- Links -->
                 <div class="b-card bc-links">
                     <p style="font-size: 13px; font-weight: 700; margin:0 0 10px 0;">Acessos Rápidos</p>
-                    <div style="display: flex; gap: 10px;">
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
                         <div style="background: rgba(59,130,246,0.1); color:#3b82f6; width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-file-alt"></i></div>
                         <div style="background: rgba(239,68,68,0.1); color:#ef4444; width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-envelope"></i></div>
                         <div style="background: rgba(139,92,246,0.1); color:#8b5cf6; width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-clock"></i></div>
@@ -232,8 +272,8 @@
                 <!-- SLA Card -->
                 <div class="b-card bc-sla">
                     <i class="fas fa-satellite-dish" style="font-size: 28px; color: var(--green); margin-bottom: 10px;"></i>
-                    <div style="font-size: 28px; font-weight: 900; line-height: 1;">Radar SLA</div>
-                    <div style="display: flex; gap: 20px; margin-top: 15px; border-top: 1px solid var(--mk-border); padding-top: 15px;">
+                    <div style="font-size: 24px; font-weight: 900; line-height: 1;">Radar SLA</div>
+                    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 15px; border-top: 1px solid var(--mk-border); padding-top: 15px;">
                         <div><div style="font-size: 22px; font-weight: 900; color:#ef4444;">2</div><div style="font-size: 9px; font-weight: 700; color: var(--mk-muted);">VENCIDOS</div></div>
                         <div><div style="font-size: 22px; font-weight: 900; color:#f59e0b;">5</div><div style="font-size: 9px; font-weight: 700; color: var(--mk-muted);">A VENCER</div></div>
                     </div>
@@ -258,17 +298,17 @@
         <div class="section-label" style="color:var(--red)">&#9632; Capítulo 04 &mdash; Motor SLA & Widget Flutuante</div>
         <p class="p-text">O motor V8 faz fetch silencioso na API do ITSM a cada 10s. O resultado é renderizado em um componente Drag & Drop não-intrusivo que acompanha o usuário durante a navegação, disparando bips via Web Audio API em caso de urgência.</p>
         
-        <div class="mockup-container" style="display: flex; justify-content: center; padding: 80px 20px;">
+        <div class="mockup-container" style="display: flex; justify-content: center; padding: 60px 20px;">
             <div class="mockup-header-bar">
                 <div class="mockup-dots"><span></span><span></span><span></span></div>
                 <div class="mockup-title">components/floating-radar.js</div>
             </div>
             
             <div class="floating-radar">
-                <span style="color: var(--green);"><i class="fas fa-satellite-dish" style="margin-right: 5px;"></i> RADAR SLA</span>
+                <span style="color: var(--green);"><i class="fas fa-satellite-dish" style="margin-right: 5px;"></i> RADAR</span>
                 <span class="tag-red">🔴 2</span>
                 <span class="tag-yel">🟡 5</span>
-                <span style="font-size: 10px; color: var(--mk-muted); margin-left: 10px;"><i class="fas fa-grip-vertical"></i></span>
+                <span style="font-size: 10px; color: var(--mk-muted); margin-left: 5px;"><i class="fas fa-grip-vertical"></i></span>
             </div>
         </div>
     </div>
@@ -289,22 +329,20 @@
                 <div class="rpa-sidebar">
                     <div class="rpa-search"><i class="fas fa-search" style="margin-right: 8px;"></i> Buscar template...</div>
                     <div class="rpa-cat">CONTAS DE USUÁRIO</div>
-                    <div class="rpa-item">Criação de Conta (Rede)</div>
+                    <div class="rpa-item">Criação de Conta</div>
                     <div class="rpa-item active"><i class="fas fa-star" style="color: #f59e0b; margin-right: 5px;"></i> Reset de Senha</div>
                     <div class="rpa-item">Bloqueio 20 minutos</div>
-                    <div class="rpa-cat">SISTEMAS SEI & SIPRA</div>
-                    <div class="rpa-item">Conceder Acesso (SEI)</div>
                 </div>
                 <!-- Editor Preview -->
                 <div class="rpa-editor">
-                    <div style="font-size: 12px; color: var(--mk-muted);"><i class="fas fa-magic" style="color: var(--green);"></i> Variáveis injetadas com sucesso. Pronto para envio.</div>
+                    <div style="font-size: 12px; color: var(--mk-muted);"><i class="fas fa-magic" style="color: var(--green);"></i> Variáveis injetadas.</div>
                     <div class="rpa-box">
                         Ticket nº <b>INC-2026-0842</b> - Solicitação para reset de senha.<br><br>
                         Prezado(a) <b>Lucas Martins Lima</b>,<br><br>
                         Informamos que a solicitação foi devidamente atendida e o reset de senha da sua conta de rede foi efetuado. O acesso já está normalizado.<br><br>
                         Atenciosamente,<br>Equipe de Suporte NOC<br>Positivo S+
                     </div>
-                    <button class="rpa-btn"><i class="fas fa-paper-plane" style="margin-right: 5px;"></i> Injetar no Chamado</button>
+                    <button class="rpa-btn"><i class="fas fa-paper-plane" style="margin-right: 5px;"></i> Injetar</button>
                 </div>
             </div>
         </div>
@@ -313,7 +351,7 @@
     <!-- CAP 06: TELEMETRIA BI -->
     <div class="section">
         <div class="section-label" style="color:#3b82f6">&#9632; Capítulo 06 &mdash; Telemetria e Mini-BI</div>
-        <p class="p-text">O sistema escuta o clique no botão "Salvar" e intercepta os dados do fechamento do chamado. Ele compila um banco de dados temporário no <code>LocalStorage</code>, permitindo visualização de ofensores e exportação de uma tabela Excel nativa (via HTML Blob MIME).</p>
+        <p class="p-text">O sistema escuta o clique no botão "Salvar" e intercepta os dados do fechamento do chamado. Ele compila um banco de dados temporário no <code>LocalStorage</code>, permitindo visualização de ofensores e exportação de uma tabela Excel nativa.</p>
         
         <div class="mockup-container">
             <div class="mockup-header-bar">
@@ -322,27 +360,25 @@
             </div>
 
             <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--mk-border); padding-bottom: 15px; margin-bottom: 20px;">
-                <h3 style="margin:0; font-size: 18px; display: flex; align-items: center; gap: 10px;"><i class="fas fa-chart-pie" style="color: #f59e0b;"></i> Telemetria Operacional (Turno atual)</h3>
-                <span style="font-size: 12px; font-weight: 700; color: var(--green); background: rgba(31,122,90,0.1); padding: 5px 12px; border-radius: 20px;">42 Finalizados</span>
+                <h3 style="margin:0; font-size: 16px; display: flex; align-items: center; gap: 10px;"><i class="fas fa-chart-pie" style="color: #f59e0b;"></i> Telemetria (Turno atual)</h3>
+                <span style="font-size: 11px; font-weight: 700; color: var(--green); background: rgba(31,122,90,0.1); padding: 5px 12px; border-radius: 20px;">42 Finalizados</span>
             </div>
 
             <div class="bi-grid">
                 <div class="bi-card">
-                    <h4 style="margin: 0 0 15px 0; color: #f59e0b; font-size: 14px;">🔥 Top Ofensores (Usuários)</h4>
+                    <h4 style="margin: 0 0 15px 0; color: #f59e0b; font-size: 13px;">🔥 Top Ofensores</h4>
                     <div class="bi-row"><span>Carlos Silva</span><b style="color: #f59e0b;">12</b></div>
                     <div class="bi-row"><span>Mariana Costa</span><b style="color: #f59e0b;">8</b></div>
-                    <div class="bi-row"><span>João Mendes</span><b style="color: #f59e0b;">5</b></div>
                 </div>
                 <div class="bi-card">
-                    <h4 style="margin: 0 0 15px 0; color: #3b82f6; font-size: 14px;">🎯 Top Incidentes (Categorias)</h4>
+                    <h4 style="margin: 0 0 15px 0; color: #3b82f6; font-size: 13px;">🎯 Top Incidentes</h4>
                     <div class="bi-row"><span>Reset de Senha / AD</span><b style="color: #3b82f6;">15</b></div>
-                    <div class="bi-row"><span>Acesso ao Sistema SEI</span><b style="color: #3b82f6;">11</b></div>
-                    <div class="bi-row"><span>Mapeamento de Impressora</span><b style="color: #3b82f6;">6</b></div>
+                    <div class="bi-row"><span>Acesso SEI</span><b style="color: #3b82f6;">11</b></div>
                 </div>
             </div>
 
             <div style="display: flex; justify-content: center; margin-top: 25px;">
-                <button style="background: rgba(16, 185, 129, 0.8); color: #fff; border: none; padding: 10px 20px; border-radius: 50px; font-weight: 700; cursor: pointer;"><i class="fas fa-file-excel"></i> Exportar Dados (.XLS)</button>
+                <button style="background: rgba(16, 185, 129, 0.8); color: #fff; border: none; padding: 10px 20px; border-radius: 50px; font-weight: 700; cursor: pointer;"><i class="fas fa-file-excel"></i> Exportar (.XLS)</button>
             </div>
         </div>
     </div>
@@ -355,7 +391,7 @@
             
             <div class="tech-row"><div class="tech-pill" style="color:var(--amber); border-color:var(--amber);">JavaScript ES6+</div><div class="tech-desc">Core logic encapsulada via IIFE, requisições Fetch assíncronas, manipulação de DOM e Regex.</div></div>
             <div class="tech-row"><div class="tech-pill" style="color:var(--blue); border-color:var(--blue);">Chrome Extension API</div><div class="tech-desc">Injeção cirúrgica de Content Scripts, mantendo a performance da ferramenta V8 isolada.</div></div>
-            <div class="tech-row"><div class="tech-pill" style="color:var(--teal); border-color:var(--teal);">CSS Custom Props</div><div class="tech-desc">Tokens de cor baseados em Tailwind CSS (Slate, Emerald, Amber) para o Design System Bento.</div></div>
+            <div class="tech-row"><div class="tech-pill" style="color:var(--teal); border-color:var(--teal);">CSS Custom Props</div><div class="tech-desc">Tokens de cor flexíveis (Slate, Emerald, Amber) para o Design System Bento.</div></div>
         </div>
     </div>
 
@@ -364,16 +400,16 @@
         <div class="section-label" style="color:var(--amber)">&#9632; Capítulo 08 &mdash; Impacto e Resultados</div>
         <div class="grid-3" style="margin-bottom:22px;">
             <div style="text-align:center; background:var(--card); border:1px solid var(--border); border-radius:16px; padding:22px;">
-                <div style="font-size: 40px; font-weight: 900; color:var(--green);">~70%</div>
-                <div style="font-size: 12px; color:var(--muted); margin-top: 6px;">Redução no tempo de triagem e redação de respostas no Kendo Editor.</div>
+                <div style="font-size: 36px; font-weight: 900; color:var(--green);">~70%</div>
+                <div style="font-size: 11px; color:var(--muted); margin-top: 6px;">Redução no tempo de triagem e redação de respostas.</div>
             </div>
             <div style="text-align:center; background:var(--card); border:1px solid var(--border); border-radius:16px; padding:22px;">
-                <div style="font-size: 40px; font-weight: 900; color:var(--blue);">100%</div>
-                <div style="font-size: 12px; color:var(--muted); margin-top: 6px;">Visibilidade do SLA crítico com alertas (bips) nativos offline.</div>
+                <div style="font-size: 36px; font-weight: 900; color:var(--blue);">100%</div>
+                <div style="font-size: 11px; color:var(--muted); margin-top: 6px;">Visibilidade do SLA crítico com alertas sonoros offline.</div>
             </div>
             <div style="text-align:center; background:var(--card); border:1px solid var(--border); border-radius:16px; padding:22px;">
-                <div style="font-size: 40px; font-weight: 900; color:var(--amber);">R$ 0</div>
-                <div style="font-size: 12px; color:var(--muted); margin-top: 6px;">Custo de infra (Cloud/DB), solução roda inteiramente no Cliente-Side.</div>
+                <div style="font-size: 36px; font-weight: 900; color:var(--amber);">R$ 0</div>
+                <div style="font-size: 11px; color:var(--muted); margin-top: 6px;">Custo de infraestrutura; solução roda 100% Client-Side.</div>
             </div>
         </div>
     </div>
@@ -385,7 +421,7 @@
                 <div style="width: 50px; height: 50px; border-radius: 50%; background: var(--green); color: #fff; font-size: 20px; font-weight: 900; display: flex; align-items: center; justify-content: center;">L</div>
                 <div>
                     <div style="font-size: 16px; font-weight: 800; color: var(--text);">LUCAS MARTINS LIMA</div>
-                    <div style="font-size: 12px; color: var(--muted);">Analista de Suporte N2 & Desenvolvedor da Solução &middot; Positivo S+ / INCRA &middot; Brasília-DF</div>
+                    <div style="font-size: 12px; color: var(--muted);">Analista de Suporte N2 & Desenvolvedor da Solução &middot; Positivo S+ / INCRA</div>
                 </div>
             </div>
             <p style="font-size: 12px; color: var(--muted); line-height: 1.6;">Solução de software (RADAR 360), algoritmos de Parser, Motor de SLA e Design System. Obra intelectual protegida pela <strong>Lei de Direitos Autorais (Lei Nº 9.610/98)</strong>.</p>
