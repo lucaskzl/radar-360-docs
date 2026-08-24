@@ -1,122 +1,135 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RADAR 360 — Documentação Técnica | Positivo S+ / INCRA</title>
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,600;0,9..40,800;0,9..40,900;1,9..40,300&display=swap" rel="stylesheet">
+    <title>RADAR 360 — Documentação Técnica & UI | Positivo S+ / INCRA</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
     <style>
         *, ::before, ::after { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        /* VARIAVEIS DE TEMA (CLARO / ESCURO) */
         :root {
+            /* Tema Claro (Light) */
+            --bg: #f8fafc; --text: #0f172a; --card: #ffffff; --border: #e2e8f0; --muted: #64748b;
+            /* Cores da Marca */
             --green: #1f7a5a; --green-light: #3fa883; --blue: #3b82f6; --amber: #f59e0b;
             --red: #ef4444; --violet: #8b5cf6; --teal: #0d9488;
-            --bg: #e8eaed; --card: #f5f6f8; --border: rgba(0,0,0,0.08);
-            --text: #1a1a2e; --muted: #6b7280;
+            
+            /* Variaveis exclusivas dos Mockups (Telas do App) */
+            --mk-bg: #e4e7ec; --mk-card: #f5f6f8; --mk-text: #1a1a2e; --mk-border: rgba(0,0,0,0.08);
+            --mk-muted: #6b7280; --mk-glass: rgba(255,255,255,0.7);
         }
-        body { font-family: 'DM Sans', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 40px 20px; }
-        .page { max-width: 900px; margin: 0 auto; }
 
-        /* CAPA */
-        .cover {
-            background: linear-gradient(135deg, #080c14 0%, #0f1a2e 50%, #081a10 100%);
-            border-radius: 28px; padding: 60px 56px; margin-bottom: 32px;
-            display: flex; align-items: center; justify-content: space-between; gap: 40px;
-            position: relative; overflow: hidden;
+        [data-theme="dark"] {
+            /* Tema Escuro (Dark) */
+            --bg: #080c14; --text: #f8fafc; --card: #101420; --border: rgba(255,255,255,0.08); --muted: #94a3b8;
+            /* Mockups Dark Mode */
+            --mk-bg: #0b0f19; --mk-card: #161b26; --mk-text: #e8edf5; --mk-border: rgba(255,255,255,0.08);
+            --mk-muted: #7a8499; --mk-glass: rgba(16,20,32,0.8);
         }
-        .cover::before {
-            content: ''; position: absolute; top: -80px; right: -80px;
-            width: 340px; height: 340px; border-radius: 50%;
-            background: radial-gradient(circle, rgba(31,122,90,0.18) 0%, transparent 70%);
-        }
-        .cover-body { flex: 1; position: relative; z-index: 1; }
-        .cover-badge {
-            display: inline-flex; align-items: center; gap: 8px;
-            background: rgba(31,122,90,0.15); border: 1px solid rgba(31,122,90,0.30);
-            border-radius: 50px; padding: 6px 16px; margin-bottom: 22px;
-        }
-        .cover-badge span { font-size: 11px; font-weight: 700; color: #3fa883; letter-spacing: 1px; text-transform: uppercase; }
-        .cover-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: #3fa883; animation: pulse 2s infinite; }
-        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 40px 20px; transition: background 0.3s, color 0.3s; }
+        .page { max-width: 950px; margin: 0 auto; }
+
+        /* ====== HEADER & TOGGLE ====== */
+        .top-nav { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+        .theme-toggle { background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 10px 20px; border-radius: 50px; cursor: pointer; font-family: inherit; font-weight: 700; display: flex; align-items: center; gap: 8px; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .theme-toggle:hover { transform: translateY(-2px); border-color: var(--green); }
+
+        /* ====== CAPA ====== */
+        .cover { background: linear-gradient(135deg, #080c14 0%, #0f1a2e 50%, #081a10 100%); border-radius: 28px; padding: 60px 56px; margin-bottom: 40px; position: relative; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .cover::before { content: ''; position: absolute; top: -80px; right: -80px; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(31,122,90,0.18) 0%, transparent 70%); }
+        .cover-body { position: relative; z-index: 1; }
+        .cover-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(31,122,90,0.15); border: 1px solid rgba(31,122,90,0.30); border-radius: 50px; padding: 6px 16px; margin-bottom: 22px; color: #3fa883; font-size: 11px; font-weight: 700; text-transform: uppercase; }
         .cover h1 { font-size: 46px; font-weight: 900; line-height: 1.1; letter-spacing: -1.5px; color: #fff; margin-bottom: 8px; }
         .cover h1 span { color: #3fa883; display: block; font-size: 32px; }
-        .cover-sub { font-size: 16px; color: rgba(255,255,255,0.55); line-height: 1.6; margin-bottom: 28px; max-width: 440px; }
+        .cover-sub { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 28px; max-width: 500px; }
         .cover-meta { display: flex; gap: 14px; flex-wrap: wrap; }
-        .cover-meta-item { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 50px; padding: 8px 18px; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.65); }
+        .cover-meta-item { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 50px; padding: 8px 18px; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.8); }
 
-        /* SECTION */
-        .section { margin-bottom: 32px; }
-        .section-label {
-            font-size: 11px; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
-            margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border);
-            display: flex; align-items: center; gap: 8px;
-        }
-
-        /* CARD BASE */
-        .card {
-            background: var(--card); border: 1px solid var(--border);
-            border-radius: 20px; padding: 28px 32px; margin-bottom: 14px;
-            box-shadow: 0 2px 12px rgba(0,0,0,0.06);
-        }
+        /* ====== SECTIONS & CARDS ====== */
+        .section { margin-bottom: 50px; }
+        .section-label { font-size: 12px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 28px 32px; margin-bottom: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: all 0.3s; }
         .card-header { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 20px; }
-        .card-icon {
-            width: 50px; height: 50px; border-radius: 16px;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 22px; flex-shrink: 0;
-        }
-        .card-chapter { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+        .card-icon { width: 50px; height: 50px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+        .card-chapter { font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
         .card-title { font-size: 20px; font-weight: 800; color: var(--text); }
+        .p-text { font-size: 14px; line-height: 1.75; margin-bottom: 16px; color: var(--text); opacity: 0.9; }
 
-        /* GRIDS & MINI CARDS */
+        /* ====== GRIDS ====== */
         .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
-        .mini-card { border-radius: 14px; padding: 18px; border: 1px solid; }
-        .mini-card b { display: block; font-size: 13px; margin-bottom: 6px; }
-        .mini-card p { font-size: 12px; color: var(--muted); line-height: 1.55; }
 
-        /* TECH PILL */
-        .tech-row { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 12px; }
-        .tech-pill { border-radius: 10px; padding: 7px 14px; font-size: 12px; font-weight: 800; white-space: nowrap; flex-shrink: 0; border: 1px solid; width: 150px; text-align: center; }
-        .tech-desc { font-size: 13px; color: var(--muted); line-height: 1.65; padding-top: 5px; }
+        /* ====== MOCKUPS (UI SIMULATION) ====== */
+        .mockup-container { background: var(--mk-bg); border: 1px solid var(--mk-border); border-radius: 20px; padding: 45px 30px 30px 30px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.2); position: relative; overflow: hidden; margin-top: 20px; margin-bottom: 30px; color: var(--mk-text); transition: all 0.3s; }
+        .mockup-header-bar { position: absolute; top: 0; left: 0; right: 0; height: 30px; background: rgba(0,0,0,0.2); display: flex; align-items: center; padding: 0 15px; border-bottom: 1px solid var(--mk-border); }
+        .mockup-dots { display: flex; gap: 6px; }
+        .mockup-dots span { width: 10px; height: 10px; border-radius: 50%; background: #64748b; opacity: 0.5; }
+        .mockup-title { position: absolute; left: 50%; transform: translateX(-50%); font-size: 10px; color: var(--mk-muted); font-family: monospace; letter-spacing: 1px; }
 
-        /* IMPACT */
-        .impact-num { font-size: 40px; font-weight: 900; line-height: 1; }
-        .impact-label { font-size: 12px; color: var(--muted); margin-top: 6px; line-height: 1.5; }
+        /* --- UI: HUB BENTO --- */
+        .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: repeat(10, 50px); gap: 12px; width: 100%; }
+        .b-card { background: var(--mk-card); border: 1px solid var(--mk-border); border-radius: 20px; padding: 18px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column; color: var(--mk-text); }
+        .bc-profile { grid-column: 1 / 6; grid-row: 1 / 5; border-left: 3px solid var(--green); }
+        .bc-rpa { grid-column: 6 / 9; grid-row: 1 / 5; align-items: center; justify-content: center; text-align: center; border-top: 3px solid var(--green); }
+        .bc-links { grid-column: 9 / 13; grid-row: 1 / 5; }
+        .bc-postit { grid-column: 1 / 4; grid-row: 5 / 11; background: rgba(245,158,11,0.05); border-color: rgba(245,158,11,0.2); }
+        .bc-sla { grid-column: 4 / 10; grid-row: 5 / 11; align-items: center; justify-content: center; text-align: center; border-top: 3px solid var(--green); }
+        .bc-bi { grid-column: 10 / 13; grid-row: 5 / 8; align-items: center; justify-content: center; text-align: center; border-top: 3px solid var(--blue); }
+        .bc-utils { grid-column: 10 / 13; grid-row: 8 / 11; justify-content: center; align-items: center; }
 
-        /* MODULE BLOCK */
-        .mod-item { background: rgba(0,0,0,0.03); border: 1px solid var(--border); border-radius: 12px; padding: 14px 16px; }
-        .mod-item b { font-size: 12px; color: var(--text); display: block; margin-bottom: 4px; }
-        .mod-item p { font-size: 11px; color: var(--muted); line-height: 1.5; }
+        /* --- UI: RADAR FLUTUANTE --- */
+        .floating-radar { background: var(--mk-card); border: 1px solid var(--mk-border); border-left: 4px solid var(--green); border-radius: 50px; padding: 10px 20px; display: inline-flex; align-items: center; gap: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); font-weight: 700; font-size: 13px; }
+        .tag-red { background: rgba(239,68,68,0.1); color: #ef4444; padding: 4px 10px; border-radius: 20px; }
+        .tag-yel { background: rgba(245,158,11,0.1); color: #f59e0b; padding: 4px 10px; border-radius: 20px; }
 
-        /* PROBLEM */
-        .problem-item { display: flex; align-items: flex-start; gap: 10px; background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.15); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; }
-        .problem-icon { color: var(--red); font-size: 14px; margin-top: 1px; flex-shrink: 0; }
-        .problem-text { font-size: 13px; color: var(--muted); line-height: 1.5; }
+        /* --- UI: RPA CATALOGO --- */
+        .rpa-container { display: flex; gap: 20px; height: 320px; }
+        .rpa-sidebar { width: 40%; border-right: 1px solid var(--mk-border); padding-right: 15px; display: flex; flex-direction: column; gap: 10px; }
+        .rpa-search { background: rgba(0,0,0,0.05); border: 1px solid var(--mk-border); padding: 10px 15px; border-radius: 50px; font-size: 12px; color: var(--mk-muted); }
+        .rpa-cat { font-size: 10px; font-weight: 800; color: var(--mk-muted); margin-top: 10px; letter-spacing: 1px; }
+        .rpa-item { padding: 10px 15px; border-radius: 12px; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid transparent; }
+        .rpa-item.active { background: rgba(31,122,90,0.1); color: var(--green); border-color: rgba(31,122,90,0.2); }
+        .rpa-item:not(.active) { color: var(--mk-text); }
+        .rpa-editor { flex: 1; display: flex; flex-direction: column; gap: 15px; }
+        .rpa-box { flex: 1; background: var(--mk-bg); border: 1px solid var(--mk-border); border-radius: 16px; padding: 20px; font-family: monospace; font-size: 12px; color: var(--mk-text); line-height: 1.6; overflow-y: hidden; }
+        .rpa-btn { background: var(--green); color: #fff; border: none; padding: 12px; border-radius: 50px; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
 
-        /* AUTHOR */
-        .author-card { display: flex; align-items: center; gap: 18px; background: rgba(0,0,0,0.04); border: 1px solid var(--border); border-radius: 14px; padding: 18px 22px; margin-bottom: 15px; }
-        .author-avatar { width: 52px; height: 52px; border-radius: 50%; background: var(--green); color: #fff; font-size: 24px; font-weight: 900; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
-        .author-name { font-size: 16px; font-weight: 800; color: var(--text); }
-        .author-role { font-size: 12px; color: var(--muted); }
-        
+        /* --- UI: MINI-BI --- */
+        .bi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .bi-card { background: var(--mk-card); border: 1px solid var(--mk-border); border-radius: 16px; padding: 20px; }
+        .bi-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed var(--mk-border); font-size: 13px; }
+
+        /* ====== FOOTER ====== */
         .footer { text-align: center; padding: 32px 0 16px; border-top: 1px solid var(--border); margin-top: 40px; font-size: 12px; color: var(--muted); line-height: 1.7; }
     </style>
 </head>
 <body>
 <div class="page">
 
+    <!-- THEME TOGGLE -->
+    <div class="top-nav">
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <i class="fas fa-moon"></i> Modo Noturno
+        </button>
+    </div>
+
     <!-- CAPA -->
     <div class="cover">
         <div class="cover-body">
             <div class="cover-badge">
                 <div class="dot"></div>
-                <span>Documentação Técnica Oficial</span>
+                <span>Documentação Técnica & UI Design</span>
             </div>
             <h1>RADAR 360<span>Hub Operacional NOC</span></h1>
-            <p class="cover-sub">Solução de automação e monitoramento operacional desenvolvida para a Central de Atendimento INCRA &mdash; Positivo S+. Documentação técnica completa para apresentação institucional.</p>
+            <p class="cover-sub">Solução de automação Front-end e monitoramento operacional desenvolvida nativamente para a Central de Atendimento INCRA &mdash; Positivo S+.</p>
             <div class="cover-meta">
                 <div class="cover-meta-item">v3.0.1 &bull; 2026</div>
                 <div class="cover-meta-item">Autor: Lucas Martins Lima</div>
-                <div class="cover-meta-item">INCRA &bull; Positivo S+</div>
             </div>
         </div>
     </div>
@@ -126,23 +139,21 @@
         <div class="section-label" style="color:var(--red)">&#9632; Capítulo 01 &mdash; Contexto e Problema</div>
         <div class="card">
             <div class="card-header">
-                <div class="card-icon" style="background:rgba(239,68,68,0.10);">&#128680;</div>
+                <div class="card-icon" style="background:rgba(239,68,68,0.10); color: var(--red);">&#128680;</div>
                 <div>
-                    <div class="card-chapter" style="color:var(--red)">Capítulo 01</div>
-                    <div class="card-title">Contexto Operacional e Problema Identificado</div>
+                    <div class="card-chapter" style="color:var(--red)">O Desafio</div>
+                    <div class="card-title">Cenário da Operação de TI</div>
                 </div>
             </div>
             <div class="grid-2">
                 <div>
-                    <p style="font-size:13px; line-height:1.75; margin-bottom:16px;">A Central de Atendimento de TI do INCRA, operada pela <strong>Positivo S+</strong>, enfrentava uma limitação crítica: a ausência de uma ferramenta centralizada que permitisse ao analista monitorar em tempo real o status de <strong>SLA (Service Level Agreement)</strong> dos chamados, acessar respostas padronizadas e registrar produtividade de maneira integrada. O sistema Cervello ESM não oferecia nativamente essa visibilidade operacional.</p>
-                    <p style="font-size:13px; line-height:1.75;">A Gerência de Suporte (GERTI/INCRA) demandava indicadores de desempenho mensais por analista. Identificou-se a necessidade de uma solução não-invasiva que não dependesse de acesso ao servidor, de APIs de terceiros ou de aprovação de TI para implantação.</p>
+                    <p class="p-text">A Central de Atendimento do INCRA (Positivo S+) enfrentava uma limitação crítica: o sistema Cervello ESM não oferecia nativamente uma visão clara em tempo real do <strong>SLA (Service Level Agreement)</strong>. Isso resultava em chamados vencendo sem alerta, impactando indicadores contratuais.</p>
+                    <p class="p-text">Além disso, respostas redigidas do zero e a ausência de dashboards individuais de produtividade engessavam o trabalho dos analistas de N2.</p>
                 </div>
                 <div>
-                    <p style="font-size:12px; font-weight:700; color:var(--red); text-transform:uppercase; margin-bottom:12px;">Sintomas Identificados</p>
-                    <div class="problem-item"><div class="problem-icon">&#10006;</div><div class="problem-text">Chamados vencendo sem alerta visual ou sonoro ao analista responsável.</div></div>
-                    <div class="problem-item"><div class="problem-icon">&#10006;</div><div class="problem-text">Respostas redigidas do zero a cada atendimento, consumindo até 4 minutos por ticket.</div></div>
-                    <div class="problem-item"><div class="problem-icon">&#10006;</div><div class="problem-text">Ausência de indicadores de desempenho por turno.</div></div>
-                    <div class="problem-item"><div class="problem-icon">&#10006;</div><div class="problem-text">Contatos de gestores de sistemas dispersos, sem acesso ágil.</div></div>
+                    <div style="background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.15); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; font-size: 13px; color: var(--muted);"><i class="fas fa-times-circle" style="color: var(--red); margin-right: 8px;"></i> Chamados vencendo sem alertas visuais ou sonoros.</div>
+                    <div style="background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.15); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; font-size: 13px; color: var(--muted);"><i class="fas fa-times-circle" style="color: var(--red); margin-right: 8px;"></i> Tempo excessivo na triagem e redação de e-mails.</div>
+                    <div style="background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.15); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; font-size: 13px; color: var(--muted);"><i class="fas fa-times-circle" style="color: var(--red); margin-right: 8px;"></i> Dificuldade na mensuração de produtividade por turno.</div>
                 </div>
             </div>
         </div>
@@ -150,135 +161,259 @@
 
     <!-- CAP 02 -->
     <div class="section">
-        <div class="section-label" style="color:var(--green)">&#9632; Capítulo 02 &mdash; Solução Desenvolvida</div>
+        <div class="section-label" style="color:var(--green)">&#9632; Capítulo 02 &mdash; A Solução</div>
         <div class="card">
             <div class="card-header">
-                <div class="card-icon" style="background:rgba(31,122,90,0.10);">&#128640;</div>
+                <div class="card-icon" style="background:rgba(31,122,90,0.10); color: var(--green);">&#128640;</div>
                 <div>
-                    <div class="card-chapter" style="color:var(--green)">Capítulo 02</div>
-                    <div class="card-title">Solução Desenvolvida &mdash; RADAR 360</div>
+                    <div class="card-chapter" style="color:var(--green)">Arquitetura</div>
+                    <div class="card-title">RADAR 360 &mdash; Hub Integrado</div>
                 </div>
             </div>
-            <p style="font-size:13px; line-height:1.75; margin-bottom:22px;">O <strong>RADAR 360</strong> é um <em>hub operacional integrado</em> desenvolvido sob o paradigma de <strong>Extensão Nativa para Google Chrome</strong>. A solução atua como uma camada de inteligência e produtividade sobreposta ao sistema existente, oferecendo uma visão unificada e em tempo real de toda a operação de suporte.</p>
+            <p class="p-text">O <strong>RADAR 360</strong> é uma Extensão Nativa (Google Chrome) que atua como uma camada de inteligência Front-end. Injetada diretamente via DOM Manipulation, ela processa dados em background sem exigir alterações no servidor ou banco de dados do cliente.</p>
             <div class="grid-3">
-                <div class="mini-card" style="background:rgba(31,122,90,0.05); border-color:rgba(31,122,90,0.15);">
-                    <b style="color:var(--green);">Monitor SLA em Tempo Real</b>
-                    <p>Integração via API REST com o backend Cervello, lendo e processando todos os chamados abertos a cada 10 segundos.</p>
+                <div style="padding: 16px; border-radius: 14px; border: 1px solid var(--border); background: var(--bg);">
+                    <b style="color:var(--green); font-size: 14px;"><i class="fas fa-satellite-dish"></i> Motor SLA</b>
+                    <p style="font-size:12px; margin-top: 8px; color: var(--muted);">Lê chamados via API REST a cada 10s e categoriza urgências.</p>
                 </div>
-                <div class="mini-card" style="background:rgba(59,130,246,0.05); border-color:rgba(59,130,246,0.15);">
-                    <b style="color:var(--blue);">RPA de Respostas</b>
-                    <p>Biblioteca de templates com preenchimento automático de dados do chamado (nome, ticket, CPF, login) via regex.</p>
+                <div style="padding: 16px; border-radius: 14px; border: 1px solid var(--border); background: var(--bg);">
+                    <b style="color:var(--blue); font-size: 14px;"><i class="fas fa-robot"></i> RPA Scripts</b>
+                    <p style="font-size:12px; margin-top: 8px; color: var(--muted);">Autopreenchimento de dados extraídos da tela (Regex).</p>
                 </div>
-                <div class="mini-card" style="background:rgba(245,158,11,0.05); border-color:rgba(245,158,11,0.15);">
-                    <b style="color:var(--amber);">Mini-BI Operacional</b>
-                    <p>Engine de telemetria que registra, agrega e apresenta dados de produtividade por analista e volume mensal.</p>
+                <div style="padding: 16px; border-radius: 14px; border: 1px solid var(--border); background: var(--bg);">
+                    <b style="color:var(--amber); font-size: 14px;"><i class="fas fa-chart-pie"></i> Telemetria BI</b>
+                    <p style="font-size:12px; margin-top: 8px; color: var(--muted);">Armazena métricas de fechamento no LocalStorage.</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- CAP 03 -->
+    <!-- CAP 03: MOCKUP HUB BENTO -->
     <div class="section">
-        <div class="section-label" style="color:#6366f1">&#9632; Capítulo 03 &mdash; Stack Tecnológico</div>
+        <div class="section-label" style="color:#f59e0b">&#9632; Capítulo 03 &mdash; UI Design (Hub Principal)</div>
+        <p class="p-text">O Design System proprietário foi focado na estética de <strong>Glassmorphism</strong> e organizado num <strong>Bento Grid CSS</strong> (12 colunas). Ele atua como o menu central flutuante para o analista, adaptando-se instantaneamente ao tema (Claro/Escuro).</p>
+        
+        <div class="mockup-container">
+            <div class="mockup-header-bar">
+                <div class="mockup-dots"><span></span><span></span><span></span></div>
+                <div class="mockup-title">components/bento-hub.js</div>
+            </div>
+            
+            <div class="bento-grid">
+                <!-- Perfil -->
+                <div class="b-card bc-profile">
+                    <div style="background: rgba(31,122,90,0.15); color: var(--green); padding: 4px 11px; border-radius: 50px; font-size: 11px; font-weight: 800; width: max-content; margin-bottom:10px;"><i class="fas fa-shield-alt"></i> OPERAÇÃO NOC</div>
+                    <h2 style="font-size: 26px; margin: 0 0 6px 0; color: var(--mk-text);">Bom dia,<br>Lucas.</h2>
+                    <p style="font-size: 12px; color: var(--mk-muted);">Hub operacional do seu turno.</p>
+                </div>
+
+                <!-- RPA -->
+                <div class="b-card bc-rpa">
+                    <div style="font-size: 24px; color: var(--green); margin-bottom: 10px;"><i class="fas fa-robot"></i></div>
+                    <p style="font-size: 14px; font-weight: 800; margin:0;">Catálogo<br>& RPA</p>
+                </div>
+
+                <!-- Links -->
+                <div class="b-card bc-links">
+                    <p style="font-size: 13px; font-weight: 700; margin:0 0 10px 0;">Acessos Rápidos</p>
+                    <div style="display: flex; gap: 10px;">
+                        <div style="background: rgba(59,130,246,0.1); color:#3b82f6; width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-file-alt"></i></div>
+                        <div style="background: rgba(239,68,68,0.1); color:#ef4444; width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-envelope"></i></div>
+                        <div style="background: rgba(139,92,246,0.1); color:#8b5cf6; width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-clock"></i></div>
+                    </div>
+                </div>
+
+                <!-- Post-it -->
+                <div class="b-card bc-postit">
+                    <p style="margin: 0; font-size: 13px; font-weight: 800; color: #d97706;"><i class="fas fa-thumbtack"></i> Anotações (Local)</p>
+                    <p style="color:#b45309; font-size:12px; margin-top:10px; line-height: 1.5;">Revisar fila N2 de redes antes do fechamento do SLA.</p>
+                </div>
+
+                <!-- SLA Card -->
+                <div class="b-card bc-sla">
+                    <i class="fas fa-satellite-dish" style="font-size: 28px; color: var(--green); margin-bottom: 10px;"></i>
+                    <div style="font-size: 28px; font-weight: 900; line-height: 1;">Radar SLA</div>
+                    <div style="display: flex; gap: 20px; margin-top: 15px; border-top: 1px solid var(--mk-border); padding-top: 15px;">
+                        <div><div style="font-size: 22px; font-weight: 900; color:#ef4444;">2</div><div style="font-size: 9px; font-weight: 700; color: var(--mk-muted);">VENCIDOS</div></div>
+                        <div><div style="font-size: 22px; font-weight: 900; color:#f59e0b;">5</div><div style="font-size: 9px; font-weight: 700; color: var(--mk-muted);">A VENCER</div></div>
+                    </div>
+                </div>
+
+                <!-- BI -->
+                <div class="b-card bc-bi">
+                    <div style="font-size: 24px; color: #3b82f6; margin-bottom: 10px;"><i class="fas fa-chart-pie"></i></div>
+                    <p style="font-size: 14px; font-weight: 800; margin:0;">Mini-BI<br>& Dados</p>
+                </div>
+
+                <!-- Utils -->
+                <div class="b-card bc-utils">
+                    <span style="font-size: 12px; color:var(--mk-muted);"><i class="fas fa-cogs" style="font-size: 18px; margin-bottom: 5px;"></i><br>Config.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAP 04: RADAR FLUTUANTE -->
+    <div class="section">
+        <div class="section-label" style="color:var(--red)">&#9632; Capítulo 04 &mdash; Motor SLA & Widget Flutuante</div>
+        <p class="p-text">O motor V8 faz fetch silencioso na API do ITSM a cada 10s. O resultado é renderizado em um componente Drag & Drop não-intrusivo que acompanha o usuário durante a navegação, disparando bips via Web Audio API em caso de urgência.</p>
+        
+        <div class="mockup-container" style="display: flex; justify-content: center; padding: 80px 20px;">
+            <div class="mockup-header-bar">
+                <div class="mockup-dots"><span></span><span></span><span></span></div>
+                <div class="mockup-title">components/floating-radar.js</div>
+            </div>
+            
+            <div class="floating-radar">
+                <span style="color: var(--green);"><i class="fas fa-satellite-dish" style="margin-right: 5px;"></i> RADAR SLA</span>
+                <span class="tag-red">🔴 2</span>
+                <span class="tag-yel">🟡 5</span>
+                <span style="font-size: 10px; color: var(--mk-muted); margin-left: 10px;"><i class="fas fa-grip-vertical"></i></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAP 05: CATALOGO RPA -->
+    <div class="section">
+        <div class="section-label" style="color:#8b5cf6">&#9632; Capítulo 05 &mdash; Automação (RPA de Respostas)</div>
+        <p class="p-text">Eliminação de redundância. O script captura o DOM da página de chamado (via Regex), extrai variáveis como <code>[NOME]</code>, <code>[CPF]</code> e <code>[TICKET]</code>, e injeta templates prontos na API do editor Kendo UI do sistema.</p>
+        
+        <div class="mockup-container">
+            <div class="mockup-header-bar">
+                <div class="mockup-dots"><span></span><span></span><span></span></div>
+                <div class="mockup-title">components/rpa-catalog.js</div>
+            </div>
+            
+            <div class="rpa-container">
+                <!-- Sidebar -->
+                <div class="rpa-sidebar">
+                    <div class="rpa-search"><i class="fas fa-search" style="margin-right: 8px;"></i> Buscar template...</div>
+                    <div class="rpa-cat">CONTAS DE USUÁRIO</div>
+                    <div class="rpa-item">Criação de Conta (Rede)</div>
+                    <div class="rpa-item active"><i class="fas fa-star" style="color: #f59e0b; margin-right: 5px;"></i> Reset de Senha</div>
+                    <div class="rpa-item">Bloqueio 20 minutos</div>
+                    <div class="rpa-cat">SISTEMAS SEI & SIPRA</div>
+                    <div class="rpa-item">Conceder Acesso (SEI)</div>
+                </div>
+                <!-- Editor Preview -->
+                <div class="rpa-editor">
+                    <div style="font-size: 12px; color: var(--mk-muted);"><i class="fas fa-magic" style="color: var(--green);"></i> Variáveis injetadas com sucesso. Pronto para envio.</div>
+                    <div class="rpa-box">
+                        Ticket nº <b>INC-2026-0842</b> - Solicitação para reset de senha.<br><br>
+                        Prezado(a) <b>Lucas Martins Lima</b>,<br><br>
+                        Informamos que a solicitação foi devidamente atendida e o reset de senha da sua conta de rede foi efetuado. O acesso já está normalizado.<br><br>
+                        Atenciosamente,<br>Equipe de Suporte NOC<br>Positivo S+
+                    </div>
+                    <button class="rpa-btn"><i class="fas fa-paper-plane" style="margin-right: 5px;"></i> Injetar no Chamado</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAP 06: TELEMETRIA BI -->
+    <div class="section">
+        <div class="section-label" style="color:#3b82f6">&#9632; Capítulo 06 &mdash; Telemetria e Mini-BI</div>
+        <p class="p-text">O sistema escuta o clique no botão "Salvar" e intercepta os dados do fechamento do chamado. Ele compila um banco de dados temporário no <code>LocalStorage</code>, permitindo visualização de ofensores e exportação de uma tabela Excel nativa (via HTML Blob MIME).</p>
+        
+        <div class="mockup-container">
+            <div class="mockup-header-bar">
+                <div class="mockup-dots"><span></span><span></span><span></span></div>
+                <div class="mockup-title">components/mini-bi.js</div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--mk-border); padding-bottom: 15px; margin-bottom: 20px;">
+                <h3 style="margin:0; font-size: 18px; display: flex; align-items: center; gap: 10px;"><i class="fas fa-chart-pie" style="color: #f59e0b;"></i> Telemetria Operacional (Turno atual)</h3>
+                <span style="font-size: 12px; font-weight: 700; color: var(--green); background: rgba(31,122,90,0.1); padding: 5px 12px; border-radius: 20px;">42 Finalizados</span>
+            </div>
+
+            <div class="bi-grid">
+                <div class="bi-card">
+                    <h4 style="margin: 0 0 15px 0; color: #f59e0b; font-size: 14px;">🔥 Top Ofensores (Usuários)</h4>
+                    <div class="bi-row"><span>Carlos Silva</span><b style="color: #f59e0b;">12</b></div>
+                    <div class="bi-row"><span>Mariana Costa</span><b style="color: #f59e0b;">8</b></div>
+                    <div class="bi-row"><span>João Mendes</span><b style="color: #f59e0b;">5</b></div>
+                </div>
+                <div class="bi-card">
+                    <h4 style="margin: 0 0 15px 0; color: #3b82f6; font-size: 14px;">🎯 Top Incidentes (Categorias)</h4>
+                    <div class="bi-row"><span>Reset de Senha / AD</span><b style="color: #3b82f6;">15</b></div>
+                    <div class="bi-row"><span>Acesso ao Sistema SEI</span><b style="color: #3b82f6;">11</b></div>
+                    <div class="bi-row"><span>Mapeamento de Impressora</span><b style="color: #3b82f6;">6</b></div>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: center; margin-top: 25px;">
+                <button style="background: rgba(16, 185, 129, 0.8); color: #fff; border: none; padding: 10px 20px; border-radius: 50px; font-weight: 700; cursor: pointer;"><i class="fas fa-file-excel"></i> Exportar Dados (.XLS)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAP 07: TECNOLOGIAS & TOGGLE INFO -->
+    <div class="section">
+        <div class="section-label" style="color:var(--teal)">&#9632; Capítulo 07 &mdash; Stack Tecnológico & CSS Variables</div>
         <div class="card">
-            <div class="card-header">
-                <div class="card-icon" style="background:rgba(99,102,241,0.10);">&#128187;</div>
-                <div>
-                    <div class="card-chapter" style="color:#6366f1">Capítulo 03</div>
-                    <div class="card-title">Stack Tecnológico e Arquitetura</div>
-                </div>
-            </div>
-            <div class="tech-row"><div class="tech-pill" style="background:rgba(245,158,11,0.10);border-color:rgba(245,158,11,0.25);color:var(--amber);">JavaScript ES6+</div><div class="tech-desc">Linguagem principal. IIFE para encapsulamento de escopo, arrow functions e Optional Chaining. Estrutura não-invasiva ao código-fonte do Cervello.</div></div>
-            <div class="tech-row"><div class="tech-pill" style="background:rgba(59,130,246,0.10);border-color:rgba(59,130,246,0.25);color:var(--blue);">Chrome Extension API</div><div class="tech-desc">Ecossistema nativo do navegador. O script atua via Content Scripts injetados em document_idle, rodando com alta performance V8.</div></div>
-            <div class="tech-row"><div class="tech-pill" style="background:rgba(31,122,90,0.10);border-color:rgba(31,122,90,0.25);color:var(--green);">AJAX / REST API</div><div class="tech-desc">O Motor V8 realiza chamadas ao endpoint reutilizando a sessão autenticada do analista.</div></div>
-            <div class="tech-row"><div class="tech-pill" style="background:rgba(239,68,68,0.10);border-color:rgba(239,68,68,0.25);color:var(--red);">Web Audio API</div><div class="tech-desc">Geração de alertas sonoros via síntese de oscilador senoidal. Zero dependência de arquivos externos.</div></div>
-            <div class="tech-row"><div class="tech-pill" style="background:rgba(139,92,246,0.10);border-color:rgba(139,92,246,0.25);color:var(--violet);">LocalStorage API</div><div class="tech-desc">Persistência de dados (assinatura, tema, notas, produtividade) sem servidor próprio ou banco de dados externo.</div></div>
-            <div class="tech-row"><div class="tech-pill" style="background:rgba(13,148,136,0.10);border-color:rgba(13,148,136,0.25);color:var(--teal);">CSS Design System</div><div class="tech-desc">Tokens de cor via CSS Custom Properties. Sistema Bento Grid com suporte nativo a dark/light mode.</div></div>
+            <p class="p-text" style="margin-bottom: 25px;">Toda a interface apresentada utiliza variáveis CSS injetadas no <code>:root</code> da página original. Isso permitiu a criação de um sistema de cores responsivo <strong>Light / Dark Mode</strong> sem recarregar a página.<br><br>💡 <em>Experimente clicar no botão "Modo Noturno / Claro" no topo desta página para ver a troca de escopo funcionando em tempo real.</em></p>
+            
+            <div class="tech-row"><div class="tech-pill" style="color:var(--amber); border-color:var(--amber);">JavaScript ES6+</div><div class="tech-desc">Core logic encapsulada via IIFE, requisições Fetch assíncronas, manipulação de DOM e Regex.</div></div>
+            <div class="tech-row"><div class="tech-pill" style="color:var(--blue); border-color:var(--blue);">Chrome Extension API</div><div class="tech-desc">Injeção cirúrgica de Content Scripts, mantendo a performance da ferramenta V8 isolada.</div></div>
+            <div class="tech-row"><div class="tech-pill" style="color:var(--teal); border-color:var(--teal);">CSS Custom Props</div><div class="tech-desc">Tokens de cor baseados em Tailwind CSS (Slate, Emerald, Amber) para o Design System Bento.</div></div>
         </div>
     </div>
 
-    <!-- CAP 04 -->
+    <!-- CAP 08: RESULTADOS -->
     <div class="section">
-        <div class="section-label" style="color:var(--teal)">&#9632; Capítulo 04 &mdash; Módulos e Arquitetura</div>
-        <div class="card">
-            <div class="card-header">
-                <div class="card-icon" style="background:rgba(13,148,136,0.10);">&#128268;</div>
-                <div>
-                    <div class="card-chapter" style="color:var(--teal)">Capítulo 04</div>
-                    <div class="card-title">Módulos e Arquitetura Funcional</div>
-                </div>
+        <div class="section-label" style="color:var(--amber)">&#9632; Capítulo 08 &mdash; Impacto e Resultados</div>
+        <div class="grid-3" style="margin-bottom:22px;">
+            <div style="text-align:center; background:var(--card); border:1px solid var(--border); border-radius:16px; padding:22px;">
+                <div style="font-size: 40px; font-weight: 900; color:var(--green);">~70%</div>
+                <div style="font-size: 12px; color:var(--muted); margin-top: 6px;">Redução no tempo de triagem e redação de respostas no Kendo Editor.</div>
             </div>
-            <p style="font-size:13px; color:var(--muted); line-height:1.7; margin-bottom:18px;">A solução é estruturada em <strong>13 módulos funcionais independentes</strong>, seguindo o princípio de responsabilidade única (SRP).</p>
-            <div class="grid-2">
-                <div class="mod-item"><b>01 &middot; Variáveis e Constantes</b><p>Configuração centralizada de cores, versão, coleções estáticas e estado global.</p></div>
-                <div class="mod-item"><b>02 &middot; Motor de Contexto</b><p>Extrai dados do chamado via regex e DOM traversal para preenchimento automático.</p></div>
-                <div class="mod-item"><b>03 &middot; Motor SLA V8</b><p>Processamento JSON, cálculo de SLA em minutos, categorização em buckets de criticidade.</p></div>
-                <div class="mod-item"><b>04 &middot; Radar Flutuante</b><p>Widget arrastável persistente com resumo do SLA visível em todas as páginas.</p></div>
-                <div class="mod-item"><b>05 &middot; RPA de Respostas</b><p>CRUD de templates com favoritos e injeção direta no editor Kendo.</p></div>
-                <div class="mod-item"><b>06 &middot; Auto-Save Inteligente</b><p>Listener de eventos DOM que registra produtividade do analista automaticamente.</p></div>
-                <div class="mod-item"><b>07 &middot; Mini-BI Mensal</b><p>Agregação de dados com exportação XLS nativa e relatório de turno.</p></div>
-                <div class="mod-item"><b>08 &middot; Interface Bento UI</b><p>Sistema de design proprietário com CSS Grid 12 colunas, glassmorphism e dark mode.</p></div>
+            <div style="text-align:center; background:var(--card); border:1px solid var(--border); border-radius:16px; padding:22px;">
+                <div style="font-size: 40px; font-weight: 900; color:var(--blue);">100%</div>
+                <div style="font-size: 12px; color:var(--muted); margin-top: 6px;">Visibilidade do SLA crítico com alertas (bips) nativos offline.</div>
+            </div>
+            <div style="text-align:center; background:var(--card); border:1px solid var(--border); border-radius:16px; padding:22px;">
+                <div style="font-size: 40px; font-weight: 900; color:var(--amber);">R$ 0</div>
+                <div style="font-size: 12px; color:var(--muted); margin-top: 6px;">Custo de infra (Cloud/DB), solução roda inteiramente no Cliente-Side.</div>
             </div>
         </div>
     </div>
 
-    <!-- CAP 05 -->
+    <!-- CAP 09: LEGAL -->
     <div class="section">
-        <div class="section-label" style="color:var(--amber)">&#9632; Capítulo 05 &mdash; Impacto e Resultados</div>
-        <div class="card">
-            <div class="card-header">
-                <div class="card-icon" style="background:rgba(245,158,11,0.10);">&#128200;</div>
+        <div class="card" style="border: 1px solid rgba(139,92,246,0.3);">
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                <div style="width: 50px; height: 50px; border-radius: 50%; background: var(--green); color: #fff; font-size: 20px; font-weight: 900; display: flex; align-items: center; justify-content: center;">L</div>
                 <div>
-                    <div class="card-chapter" style="color:var(--amber)">Capítulo 05</div>
-                    <div class="card-title">Impacto Operacional e Resultados</div>
+                    <div style="font-size: 16px; font-weight: 800; color: var(--text);">LUCAS MARTINS LIMA</div>
+                    <div style="font-size: 12px; color: var(--muted);">Analista de Suporte N2 & Desenvolvedor da Solução &middot; Positivo S+ / INCRA &middot; Brasília-DF</div>
                 </div>
             </div>
-            <div class="grid-3" style="margin-bottom:22px;">
-                <div style="text-align:center; background:rgba(31,122,90,0.05); border:1px solid rgba(31,122,90,0.15); border-radius:16px; padding:22px;">
-                    <div class="impact-num" style="color:var(--green);">~70%</div>
-                    <div class="impact-label">Redução no tempo de redação de respostas por atendimento</div>
-                </div>
-                <div style="text-align:center; background:rgba(59,130,246,0.05); border:1px solid rgba(59,130,246,0.15); border-radius:16px; padding:22px;">
-                    <div class="impact-num" style="color:var(--blue);">100%</div>
-                    <div class="impact-label">Visibilidade em tempo real do status de SLA da fila</div>
-                </div>
-                <div style="text-align:center; background:rgba(245,158,11,0.05); border:1px solid rgba(245,158,11,0.15); border-radius:16px; padding:22px;">
-                    <div class="impact-num" style="color:var(--amber);">R$ 0</div>
-                    <div class="impact-label">Custo de infraestrutura adicional &mdash; roda no navegador</div>
-                </div>
-            </div>
-            <p style="font-size:13px; color:var(--muted); line-height:1.75;">A solução demonstrou impacto direto na qualidade do atendimento, com redução significativa no número de chamados vencidos. A biblioteca eliminou inconsistências na comunicação. O Mini-BI passou a fornecer dados objetivos para reuniões de gestão, substituindo relatórios manuais por exportações automáticas.</p>
+            <p style="font-size: 12px; color: var(--muted); line-height: 1.6;">Solução de software (RADAR 360), algoritmos de Parser, Motor de SLA e Design System. Obra intelectual protegida pela <strong>Lei de Direitos Autorais (Lei Nº 9.610/98)</strong>.</p>
         </div>
-    </div>
-
-    <!-- CAP 06 -->
-    <div class="section">
-        <div class="section-label" style="color:var(--amber)">&#9632; Capítulo 06 &mdash; Propriedade Intelectual</div>
-        <div class="card" style="border:1.5px solid rgba(252,211,77,0.25); background:linear-gradient(135deg, rgba(252,211,77,0.04) 0%, var(--card) 60%);">
-            <div class="card-header">
-                <div class="card-icon" style="background:rgba(252,211,77,0.12);">&#9878;</div>
-                <div>
-                    <div class="card-chapter" style="color:var(--amber)">Capítulo 06 &middot; Legal</div>
-                    <div class="card-title">Propriedade Intelectual e Direitos Autorais</div>
-                </div>
-            </div>
-            <p style="font-size:13px; color:var(--muted); line-height:1.75; margin-bottom:16px;">Esta solução de software, incluindo algoritmos, RPA, engine de SLA, Bento UI, biblioteca de templates e documentação correlata, constitui obra intelectual protegida pela <strong>Lei de Direitos Autorais (Lei Nº 9.610/98)</strong>, de propriedade exclusiva do autor.</p>
-            <div class="author-card">
-                <div class="author-avatar">L</div>
-                <div>
-                    <div class="author-name">LUCAS MARTINS LIMA</div>
-                    <div class="author-role">Engenharia de Soluções &middot; Positivo S+ / INCRA &middot; Brasília-DF</div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="footer">
-        <p><strong>RADAR 360 Hub Operacional NOC</strong> &mdash; v3.0.1 <br>
-        Desenvolvido por <strong>Lucas Martins Lima</strong> &bull; Positivo S+ / INCRA &bull; Brasília-DF<br>
-        <em>Documento de apresentação técnica profissional.</em></p>
     </div>
 
 </div>
+
+<!-- SCRIPT DO TEMA (THEME TOGGLE) -->
+<script>
+    function toggleTheme() {
+        const html = document.documentElement;
+        const btnIcon = document.querySelector('.theme-toggle i');
+        const btnText = document.querySelector('.theme-toggle');
+
+        if (html.getAttribute('data-theme') === 'dark') {
+            html.setAttribute('data-theme', 'light');
+            btnIcon.className = 'fas fa-sun';
+            btnIcon.style.color = '#f59e0b';
+            btnText.innerHTML = '<i class="fas fa-sun" style="color: #f59e0b;"></i> Modo Claro';
+        } else {
+            html.setAttribute('data-theme', 'dark');
+            btnIcon.className = 'fas fa-moon';
+            btnIcon.style.color = '#8b5cf6';
+            btnText.innerHTML = '<i class="fas fa-moon" style="color: #8b5cf6;"></i> Modo Noturno';
+        }
+    }
+</script>
+
 </body>
 </html>
