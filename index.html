@@ -1,186 +1,462 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="dark">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#f7f8fa">
-<meta name="description" content="Certificações e cursos concluídos de Lucas Martins Lima.">
-<title>Certificações | Lucas Martins Lima</title>
-<script>
-if (localStorage.getItem('theme') === 'dark') {
-  document.documentElement.setAttribute('data-theme', 'dark');
-  document.querySelector('meta[name="theme-color"]')?.setAttribute('content', '#0d1117');
-}
-</script>
-<style>
-:root{color-scheme:light;--paper:#f7f8fa;--white:#fff;--ink:#121a27;--muted:#657080;--soft:#8a94a2;--line:#dfe4ea;--accent:#174a83;--radius:10px;--content:1040px}
-:root[data-theme="dark"]{color-scheme:dark;--paper:#0d1117;--white:#151b24;--ink:#edf2f7;--muted:#9aa5b4;--soft:#758191;--line:#252e3c;--accent:#5ca0eb}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:18px}
-body{margin:0;background:var(--paper);color:var(--ink);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;transition:background-color .2s ease,color .2s ease}
-a{color:inherit}
-.site-shell{width:min(var(--content),calc(100% - 56px));margin:0 auto}
-.site-header{min-height:74px;display:flex;align-items:center;gap:14px;border-bottom:1px solid var(--line)}
-.monogram{display:grid;place-items:center;width:40px;height:40px;flex:0 0 40px;border:1px solid #cbd4df;border-radius:50%;color:var(--accent);text-decoration:none;font-size:13px;font-weight:750;letter-spacing:-.05em}
-:root[data-theme="dark"] .monogram{border-color:#2e3a4b}
-.header-name{font-size:13px;font-weight:650;letter-spacing:-.01em}
-.theme-toggle{margin-left:auto;display:inline-flex;align-items:center;gap:6px;padding:6px 11px;border:1px solid var(--line);border-radius:999px;background:var(--white);color:var(--muted);font:inherit;font-size:11px;font-weight:600;cursor:pointer;transition:border-color .15s ease,color .15s ease,background-color .15s ease}
-.theme-toggle:hover{border-color:var(--accent);color:var(--accent)}
-.theme-toggle svg{width:14px;height:14px;flex:0 0 14px}
-.intro{padding:54px 0 42px;max-width:710px}
-.intro h1{margin:0;font-size:clamp(43px,7vw,70px);font-weight:680;line-height:1.02;letter-spacing:-.075em}
-.intro h1 span{color:var(--accent)}
-.intro-rule{display:flex;gap:5px;margin-top:25px}.intro-rule span{display:block;width:26px;height:3px;border-radius:5px;background:var(--accent)}.intro-rule span:nth-child(2){width:11px;opacity:.45}.intro-rule span:nth-child(3){width:5px;opacity:.2}
-.content-section{padding:26px 0 56px;border-top:1px solid var(--line)}
-.section-heading{display:flex;align-items:end;justify-content:space-between;margin-bottom:22px;gap:16px}
-.eyebrow{margin:0;color:var(--muted);font-size:10px;font-weight:750;letter-spacing:.14em;line-height:1.5}
-.section-heading h2{margin:6px 0 0;font-size:27px;font-weight:650;letter-spacing:-.05em;line-height:1.2}
-.section-count{color:var(--soft);font-size:13px;font-variant-numeric:tabular-nums}
-.course-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:14px}
-.credential-card{min-width:0;min-height:222px;height:100%;display:flex;align-items:center;justify-content:space-between;gap:18px;padding:20px;border:1px solid var(--line);border-radius:var(--radius);background:var(--white);transition:background-color .2s ease,border-color .2s ease}
-.credential-main{min-width:0;flex:1}.card-topline{display:flex;align-items:center;justify-content:space-between;gap:10px}.type-label{display:inline-block;color:var(--accent);font-size:9px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.card-date{color:var(--soft);font-size:11px;white-space:nowrap}
-.credential-card h3{margin:13px 0 3px;font-size:18px;line-height:1.3;font-weight:670;letter-spacing:-.035em}.issuer{margin:0;color:var(--muted);font-size:12px}.course-details{margin:11px 0 0;color:var(--muted);font-size:12px;line-height:1.6}
-.qr-wrap{display:flex;flex:0 0 106px;flex-direction:column;align-items:center;gap:7px;margin:auto 0}.qr-wrap img{display:block;width:106px;height:106px;padding:5px;border:1px solid var(--line);border-radius:6px;background:#fff}.qr-wrap span{max-width:112px;color:var(--soft);font-size:7px;font-weight:800;letter-spacing:.08em;text-align:center;line-height:1.4}
-.document-tile{width:106px;min-height:106px;display:flex;flex:0 0 106px;flex-direction:column;align-items:center;justify-content:center;gap:5px;margin:auto 0;padding:9px;border:1px solid var(--line);border-radius:6px;background:#fbfcfd;text-align:center;text-decoration:none}.document-tile svg{width:28px;height:28px;color:var(--accent)}.document-tile strong{font-size:8px;letter-spacing:.08em;color:var(--ink)}.document-tile small{font-size:7px;line-height:1.35;color:var(--soft);letter-spacing:.04em}.document-tile.is-ready{border-color:#cbd8e5;background:#f8fbff}.document-tile.is-ready:hover{border-color:var(--accent)}
-:root[data-theme="dark"] .document-tile{background:#1a222d}
-:root[data-theme="dark"] .document-tile.is-ready{border-color:#2d435e;background:#182433}
-.credential-code{display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:13px;padding-top:10px;border-top:1px solid #edf0f3}.credential-code>span{display:grid;min-width:0;gap:3px}.credential-code small{color:var(--soft);font-size:8px;font-weight:750;letter-spacing:.1em}.credential-code code{overflow-wrap:anywhere;color:#515d6d;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:9px}.copy-button{flex:0 0 auto;padding:5px 8px;border:1px solid var(--line);border-radius:5px;background:#fff;color:var(--muted);font:inherit;font-size:10px;cursor:pointer}.copy-button:hover{border-color:#b8c8d9;color:var(--accent)}
-:root[data-theme="dark"] .credential-code{border-top-color:#202835}
-:root[data-theme="dark"] .credential-code code{color:#b8c2cf}
-:root[data-theme="dark"] .copy-button{background:#1a222d}
-:root[data-theme="dark"] .copy-button:hover{border-color:#446182}
-.course-meta{display:flex;flex-wrap:wrap;align-items:center;gap:7px;margin-top:9px;color:var(--muted);font-size:10px;line-height:1.5}.course-meta i{width:3px;height:3px;flex:0 0 3px;border-radius:50%;background:#aab3bd}.period-note{margin:6px 0 0;color:var(--soft);font-size:10px}
-:root[data-theme="dark"] .course-meta i{background:#4a5565}
-.card-actions{display:flex;flex-wrap:wrap;gap:9px 14px;margin-top:12px}.validation-link,.certificate-link{display:inline-flex;gap:5px;align-items:center;color:var(--accent);font-size:11px;font-weight:700;text-decoration:none}.certificate-link{color:#526273}.validation-link:hover,.certificate-link:hover{ text-decoration:underline }
-:root[data-theme="dark"] .certificate-link{color:#9cb0c4}
-.toast{position:fixed;left:50%;bottom:22px;z-index:10;transform:translate(-50%,12px);padding:9px 14px;border-radius:7px;background:var(--ink);color:#fff;font-size:12px;opacity:0;pointer-events:none;transition:opacity .2s ease,transform .2s ease}.toast.show{transform:translate(-50%,0);opacity:1}
-:root[data-theme="dark"] .toast{background:#e2e8f0;color:#0d1117}
-@media(max-width:760px){.site-shell{width:min(100% - 36px,var(--content))}.site-header{min-height:66px}.intro{padding:48px 0 34px}.intro h1{font-size:clamp(43px,12vw,64px)}.course-grid{grid-template-columns:1fr}}
-@media(max-width:480px){.site-shell{width:calc(100% - 30px)}.header-name{font-size:12px}.monogram{width:37px;height:37px;flex-basis:37px}.theme-toggle{padding:5px 9px;font-size:10px}.credential-card{min-height:190px;padding:15px;gap:10px}.qr-wrap,.document-tile{flex-basis:78px;width:78px}.qr-wrap img{width:78px;height:78px}.qr-wrap span{font-size:6px}.document-tile{min-height:78px;padding:5px}.document-tile svg{width:22px;height:22px}.document-tile strong{font-size:7px}.document-tile small{font-size:6px}.card-topline{align-items:start;flex-direction:column;gap:3px}.section-heading h2{font-size:23px}}
-@media print{body{background:#fff!important;color:#121a27!important}.site-shell{width:100%}.copy-button,.toast,.theme-toggle{display:none!important}.credential-card{break-inside:avoid;background:#fff!important}}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RADAR 360 — Documentação Técnica & UI | Positivo S+ / INCRA</title>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,800;0,9..40,900;1,9..40,400&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    
+    <style>
+        *, ::before, ::after { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        /* VARIAVEIS DE TEMA (CLARO / ESCURO) */
+        :root {
+            --bg: #f8fafc; --text: #0f172a; --card: #ffffff; --border: #e2e8f0; --muted: #64748b;
+            --green: #1f7a5a; --green-light: #3fa883; --blue: #3b82f6; --amber: #f59e0b;
+            --red: #ef4444; --violet: #8b5cf6; --teal: #0d9488;
+            --mk-bg: #e4e7ec; --mk-card: #f5f6f8; --mk-text: #1a1a2e; --mk-border: rgba(0,0,0,0.08);
+            --mk-muted: #6b7280; --mk-glass: rgba(255,255,255,0.7);
+        }
+
+        [data-theme="dark"] {
+            --bg: #080c14; --text: #f8fafc; --card: #101420; --border: rgba(255,255,255,0.08); --muted: #94a3b8;
+            --mk-bg: #0b0f19; --mk-card: #161b26; --mk-text: #e8edf5; --mk-border: rgba(255,255,255,0.08);
+            --mk-muted: #7a8499; --mk-glass: rgba(16,20,32,0.8);
+        }
+
+        body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; padding: 40px 20px; transition: background 0.3s, color 0.3s; }
+        .page { max-width: 950px; margin: 0 auto; }
+
+        /* ====== HEADER & TOGGLE ====== */
+        .top-nav { display: flex; justify-content: flex-end; margin-bottom: 20px; }
+        .theme-toggle { background: var(--card); border: 1px solid var(--border); color: var(--text); padding: 10px 20px; border-radius: 50px; cursor: pointer; font-family: inherit; font-weight: 700; display: flex; align-items: center; gap: 8px; transition: all 0.2s; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+        .theme-toggle:hover { transform: translateY(-2px); border-color: var(--green); }
+
+        /* ====== CAPA ====== */
+        .cover { background: linear-gradient(135deg, #080c14 0%, #0f1a2e 50%, #081a10 100%); border-radius: 28px; padding: 60px 56px; margin-bottom: 40px; position: relative; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
+        .cover::before { content: ''; position: absolute; top: -80px; right: -80px; width: 340px; height: 340px; border-radius: 50%; background: radial-gradient(circle, rgba(31,122,90,0.18) 0%, transparent 70%); }
+        .cover-body { position: relative; z-index: 1; }
+        .cover-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(31,122,90,0.15); border: 1px solid rgba(31,122,90,0.30); border-radius: 50px; padding: 6px 16px; margin-bottom: 22px; color: #3fa883; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+        .cover h1 { font-size: 46px; font-weight: 900; line-height: 1.1; letter-spacing: -1.5px; color: #fff; margin-bottom: 8px; }
+        .cover h1 span { color: #3fa883; display: block; font-size: 32px; }
+        .cover-sub { font-size: 15px; color: rgba(255,255,255,0.6); line-height: 1.6; margin-bottom: 28px; max-width: 500px; }
+        .cover-meta { display: flex; gap: 14px; flex-wrap: wrap; }
+        .cover-meta-item { background: rgba(255,255,255,0.07); border: 1px solid rgba(255,255,255,0.12); border-radius: 50px; padding: 8px 18px; font-size: 12px; font-weight: 600; color: rgba(255,255,255,0.8); }
+
+        /* ====== SECTIONS & CARDS ====== */
+        .section { margin-bottom: 50px; }
+        .section-label { font-size: 12px; font-weight: 800; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 16px; padding-bottom: 12px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 8px; }
+        .card { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 28px 32px; margin-bottom: 14px; box-shadow: 0 4px 15px rgba(0,0,0,0.02); transition: all 0.3s; }
+        .card-header { display: flex; align-items: flex-start; gap: 18px; margin-bottom: 20px; }
+        .card-icon { width: 50px; height: 50px; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+        .card-chapter { font-size: 11px; font-weight: 700; text-transform: uppercase; margin-bottom: 4px; }
+        .card-title { font-size: 20px; font-weight: 800; color: var(--text); }
+        .p-text { font-size: 14px; line-height: 1.75; margin-bottom: 16px; color: var(--text); opacity: 0.9; }
+
+        /* ====== GRIDS ====== */
+        .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+
+        /* ====== MOCKUPS (UI SIMULATION) ====== */
+        .mockup-container { background: var(--mk-bg); border: 1px solid var(--mk-border); border-radius: 20px; padding: 45px 30px 30px 30px; box-shadow: 0 25px 50px -12px rgba(0,0,0,0.2); position: relative; overflow: hidden; margin-top: 20px; margin-bottom: 30px; color: var(--mk-text); transition: all 0.3s; }
+        .mockup-header-bar { position: absolute; top: 0; left: 0; right: 0; height: 30px; background: rgba(0,0,0,0.2); display: flex; align-items: center; padding: 0 15px; border-bottom: 1px solid var(--mk-border); }
+        .mockup-dots { display: flex; gap: 6px; }
+        .mockup-dots span { width: 10px; height: 10px; border-radius: 50%; background: #64748b; opacity: 0.5; }
+        .mockup-title { position: absolute; left: 50%; transform: translateX(-50%); font-size: 10px; color: var(--mk-muted); font-family: monospace; letter-spacing: 1px; }
+
+        /* --- UI: HUB BENTO --- */
+        .bento-grid { display: grid; grid-template-columns: repeat(12, 1fr); grid-template-rows: repeat(10, 50px); gap: 12px; width: 100%; }
+        .b-card { background: var(--mk-card); border: 1px solid var(--mk-border); border-radius: 20px; padding: 18px; box-shadow: 0 4px 15px rgba(0,0,0,0.03); display: flex; flex-direction: column; color: var(--mk-text); }
+        .bc-profile { grid-column: 1 / 6; grid-row: 1 / 5; border-left: 3px solid var(--green); }
+        .bc-rpa { grid-column: 6 / 9; grid-row: 1 / 5; align-items: center; justify-content: center; text-align: center; border-top: 3px solid var(--green); }
+        .bc-links { grid-column: 9 / 13; grid-row: 1 / 5; }
+        .bc-postit { grid-column: 1 / 4; grid-row: 5 / 11; background: rgba(245,158,11,0.05); border-color: rgba(245,158,11,0.2); }
+        .bc-sla { grid-column: 4 / 10; grid-row: 5 / 11; align-items: center; justify-content: center; text-align: center; border-top: 3px solid var(--green); }
+        .bc-bi { grid-column: 10 / 13; grid-row: 5 / 8; align-items: center; justify-content: center; text-align: center; border-top: 3px solid var(--blue); }
+        .bc-utils { grid-column: 10 / 13; grid-row: 8 / 11; justify-content: center; align-items: center; }
+
+        /* --- UI: RADAR FLUTUANTE --- */
+        .floating-radar { background: var(--mk-card); border: 1px solid var(--mk-border); border-left: 4px solid var(--green); border-radius: 50px; padding: 10px 20px; display: inline-flex; align-items: center; gap: 15px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); font-weight: 700; font-size: 13px; }
+        .tag-red { background: rgba(239,68,68,0.1); color: #ef4444; padding: 4px 10px; border-radius: 20px; }
+        .tag-yel { background: rgba(245,158,11,0.1); color: #f59e0b; padding: 4px 10px; border-radius: 20px; }
+
+        /* --- UI: RPA CATALOGO --- */
+        .rpa-container { display: flex; gap: 20px; height: 320px; }
+        .rpa-sidebar { width: 40%; border-right: 1px solid var(--mk-border); padding-right: 15px; display: flex; flex-direction: column; gap: 10px; }
+        .rpa-search { background: rgba(0,0,0,0.05); border: 1px solid var(--mk-border); padding: 10px 15px; border-radius: 50px; font-size: 12px; color: var(--mk-muted); }
+        .rpa-cat { font-size: 10px; font-weight: 800; color: var(--mk-muted); margin-top: 10px; letter-spacing: 1px; }
+        .rpa-item { padding: 10px 15px; border-radius: 12px; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid transparent; }
+        .rpa-item.active { background: rgba(31,122,90,0.1); color: var(--green); border-color: rgba(31,122,90,0.2); }
+        .rpa-item:not(.active) { color: var(--mk-text); }
+        .rpa-editor { flex: 1; display: flex; flex-direction: column; gap: 15px; }
+        .rpa-box { flex: 1; background: var(--mk-bg); border: 1px solid var(--mk-border); border-radius: 16px; padding: 20px; font-family: monospace; font-size: 12px; color: var(--mk-text); line-height: 1.6; overflow-y: hidden; }
+        .rpa-btn { background: var(--green); color: #fff; border: none; padding: 12px; border-radius: 50px; font-weight: 700; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+
+        /* --- UI: MINI-BI --- */
+        .bi-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+        .bi-card { background: var(--mk-card); border: 1px solid var(--mk-border); border-radius: 16px; padding: 20px; }
+        .bi-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px dashed var(--mk-border); font-size: 13px; }
+
+        /* ====== TECH PILLS ====== */
+        .tech-row { display: flex; gap: 14px; align-items: flex-start; margin-bottom: 12px; }
+        .tech-pill { border-radius: 10px; padding: 7px 14px; font-size: 12px; font-weight: 800; white-space: nowrap; flex-shrink: 0; border: 1px solid; width: 165px; text-align: center; }
+        .tech-desc { font-size: 13px; color: var(--muted); line-height: 1.65; padding-top: 5px; }
+
+        /* ====== FOOTER ====== */
+        .footer { text-align: center; padding: 32px 0 16px; border-top: 1px solid var(--border); margin-top: 40px; font-size: 12px; color: var(--muted); line-height: 1.7; }
+
+        /* ========================================= */
+        /* MEDIA QUERIES (DESIGN RESPONSIVO CELULAR) */
+        /* ========================================= */
+        @media (max-width: 768px) {
+            body { padding: 20px 15px; }
+            
+            /* Ajustes da Capa */
+            .cover { padding: 40px 25px; text-align: center; }
+            .cover::before { display: none; }
+            .cover h1 { font-size: 32px; }
+            .cover h1 span { font-size: 22px; }
+            .cover-meta { justify-content: center; }
+            
+            /* Quebra das Grades */
+            .grid-2, .grid-3, .bi-grid { 
+                grid-template-columns: 1fr; 
+                gap: 20px; 
+            }
+            
+            /* Card Geral */
+            .card { padding: 20px; }
+            .card-header { flex-direction: column; gap: 10px; align-items: center; text-align: center; }
+            .tech-row { flex-direction: column; gap: 6px; }
+            .tech-pill { width: 100%; }
+            
+            /* Mockups e Paineis */
+            .mockup-container { padding: 50px 15px 20px 15px; }
+            .mockup-title { width: 100%; text-align: center; }
+
+            /* Bento Grid vira coluna única no celular */
+            .bento-grid { 
+                display: flex; 
+                flex-direction: column; 
+                gap: 15px; 
+            }
+            .bc-profile, .bc-rpa, .bc-links, .bc-postit, .bc-sla, .bc-bi, .bc-utils { 
+                border-left: none;
+            }
+            .bc-profile { border-top: 3px solid var(--green); text-align: center; align-items: center; }
+            
+            /* Catálogo RPA empilhando menu e texto */
+            .rpa-container { flex-direction: column; height: auto; }
+            .rpa-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--mk-border); padding-right: 0; padding-bottom: 20px; }
+            
+            /* Dashboard Cards empilhando */
+            .metrics-grid { grid-template-columns: 1fr; gap: 15px; }
+        }
+    </style>
 </head>
 <body>
-<div class="site-shell">
-<header class="site-header">
-  <a class="monogram" href="#certificacoes" aria-label="Ir para as certificações">LM</a>
-  <span class="header-name">Lucas Martins Lima</span>
-  <button class="theme-toggle" id="theme-toggle" type="button" aria-pressed="false" aria-label="Ativar modo noturno">
-    <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-    <span id="theme-label">Modo noturno</span>
-  </button>
-</header>
-<main>
-  <section class="intro" aria-labelledby="page-title">
-    <h1 id="page-title">Cursos &amp;<br><span>Certificações.</span></h1>
-    <div class="intro-rule" aria-hidden="true"><span></span><span></span><span></span></div>
-  </section>
-  <section class="content-section" id="certificacoes" aria-labelledby="credentials-title">
-    <div class="section-heading"><div><p class="eyebrow">01 / CREDENCIAIS DIGITAIS</p><h2 id="credentials-title">Certificações e cursos concluídos</h2></div><span class="section-count" id="credential-count">06</span></div>
-    <div class="course-grid" id="credentials-grid" aria-live="polite"></div>
-  </section>
-</main>
+<div class="page">
+
+    <!-- THEME TOGGLE -->
+    <div class="top-nav">
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <i class="fas fa-moon" style="color: #8b5cf6;"></i> Modo Noturno
+        </button>
+    </div>
+
+    <!-- CAPA -->
+    <div class="cover">
+        <div class="cover-body">
+            <div class="cover-badge">
+                <div class="dot"></div>
+                <span>Documentação Técnica &amp; UI Design</span>
+            </div>
+            <h1>RADAR 360<span>Hub Operacional NOC</span></h1>
+            <p class="cover-sub">Solução de automação Front-end e monitoramento operacional desenvolvida nativamente para a Central de Atendimento INCRA &mdash; Positivo S+.</p>
+            <div class="cover-meta">
+                <div class="cover-meta-item">v3.0.1 &bull; 2026</div>
+                <div class="cover-meta-item">Autor: Lucas Martins Lima</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAP 01 -->
+    <div class="section">
+        <div class="section-label" style="color:var(--red)">&#9632; Capítulo 01 &mdash; Contexto e Problema</div>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon" style="background:rgba(239,68,68,0.10); color: var(--red);">&#128680;</div>
+                <div>
+                    <div class="card-chapter" style="color:var(--red)">O Desafio</div>
+                    <div class="card-title">Cenário da Operação de TI</div>
+                </div>
+            </div>
+            <div class="grid-2">
+                <div>
+                    <p class="p-text">A Central de Atendimento do INCRA (Positivo S+) enfrentava uma limitação crítica: o sistema Cervello ESM não oferecia nativamente uma visão clara em tempo real do <strong>SLA (Service Level Agreement)</strong>. Isso resultava em chamados vencendo sem alerta, impactando indicadores contratuais.</p>
+                    <p class="p-text">Além disso, respostas redigidas do zero e a ausência de dashboards individuais de produtividade engessavam o trabalho dos analistas de N2.</p>
+                </div>
+                <div>
+                    <div style="background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.15); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; font-size: 13px; color: var(--muted);"><i class="fas fa-times-circle" style="color: var(--red); margin-right: 8px;"></i> Chamados vencendo sem alertas visuais ou sonoros.</div>
+                    <div style="background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.15); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; font-size: 13px; color: var(--muted);"><i class="fas fa-times-circle" style="color: var(--red); margin-right: 8px;"></i> Tempo excessivo na triagem e redação de e-mails.</div>
+                    <div style="background: rgba(239,68,68,0.05); border: 1px solid rgba(239,68,68,0.15); border-radius: 10px; padding: 12px 14px; margin-bottom: 8px; font-size: 13px; color: var(--muted);"><i class="fas fa-times-circle" style="color: var(--red); margin-right: 8px;"></i> Dificuldade na mensuração de produtividade por turno.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAP 02 -->
+    <div class="section">
+        <div class="section-label" style="color:var(--green)">&#9632; Capítulo 02 &mdash; A Solução</div>
+        <div class="card">
+            <div class="card-header">
+                <div class="card-icon" style="background:rgba(31,122,90,0.10); color: var(--green);">&#128640;</div>
+                <div>
+                    <div class="card-chapter" style="color:var(--green)">Arquitetura</div>
+                    <div class="card-title">RADAR 360 &mdash; Hub Integrado</div>
+                </div>
+            </div>
+            <p class="p-text">O <strong>RADAR 360</strong> é uma Extensão Nativa (Google Chrome) que atua como uma camada de inteligência Front-end. Injetada diretamente via DOM Manipulation, ela processa dados em background sem exigir alterações no servidor ou banco de dados do cliente.</p>
+            <div class="grid-3">
+                <div style="padding: 16px; border-radius: 14px; border: 1px solid var(--border); background: var(--bg);">
+                    <b style="color:var(--green); font-size: 14px;"><i class="fas fa-satellite-dish"></i> Motor SLA</b>
+                    <p style="font-size:12px; margin-top: 8px; color: var(--muted);">Lê chamados via API REST a cada 10s e categoriza urgências.</p>
+                </div>
+                <div style="padding: 16px; border-radius: 14px; border: 1px solid var(--border); background: var(--bg);">
+                    <b style="color:var(--blue); font-size: 14px;"><i class="fas fa-robot"></i> RPA Scripts</b>
+                    <p style="font-size:12px; margin-top: 8px; color: var(--muted);">Autopreenchimento de dados extraídos da tela (Regex).</p>
+                </div>
+                <div style="padding: 16px; border-radius: 14px; border: 1px solid var(--border); background: var(--bg);">
+                    <b style="color:var(--amber); font-size: 14px;"><i class="fas fa-chart-pie"></i> Telemetria BI</b>
+                    <p style="font-size:12px; margin-top: 8px; color: var(--muted);">Armazena métricas de fechamento no LocalStorage.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAP 03: MOCKUP HUB BENTO -->
+    <div class="section">
+        <div class="section-label" style="color:#f59e0b">&#9632; Capítulo 03 &mdash; UI Design (Hub Principal)</div>
+        <p class="p-text">O Design System proprietário foi focado na estética de <strong>Glassmorphism</strong> e organizado num <strong>Bento Grid CSS</strong>. Ele atua como o menu central flutuante para o analista, adaptando-se instantaneamente ao tema (Claro/Escuro).</p>
+        
+        <div class="mockup-container">
+            <div class="mockup-header-bar">
+                <div class="mockup-dots"><span></span><span></span><span></span></div>
+                <div class="mockup-title">components/bento-hub.js</div>
+            </div>
+            
+            <div class="bento-grid">
+                <!-- Perfil -->
+                <div class="b-card bc-profile">
+                    <div style="background: rgba(31,122,90,0.15); color: var(--green); padding: 4px 11px; border-radius: 50px; font-size: 11px; font-weight: 800; width: max-content; margin-bottom:10px;"><i class="fas fa-shield-alt"></i> OPERAÇÃO NOC</div>
+                    <h2 style="font-size: 26px; margin: 0 0 6px 0; color: var(--mk-text);">Bom dia,<br>Lucas.</h2>
+                    <p style="font-size: 12px; color: var(--mk-muted);">Hub operacional do seu turno.</p>
+                </div>
+
+                <!-- RPA -->
+                <div class="b-card bc-rpa">
+                    <div style="font-size: 24px; color: var(--green); margin-bottom: 10px;"><i class="fas fa-robot"></i></div>
+                    <p style="font-size: 14px; font-weight: 800; margin:0;">Catálogo<br>&amp; RPA</p>
+                </div>
+
+                <!-- Links -->
+                <div class="b-card bc-links">
+                    <p style="font-size: 13px; font-weight: 700; margin:0 0 10px 0;">Acessos Rápidos</p>
+                    <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+                        <div style="background: rgba(59,130,246,0.1); color:#3b82f6; width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-file-alt"></i></div>
+                        <div style="background: rgba(239,68,68,0.1); color:#ef4444; width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-envelope"></i></div>
+                        <div style="background: rgba(139,92,246,0.1); color:#8b5cf6; width: 40px; height: 40px; border-radius: 12px; display: flex; align-items: center; justify-content: center;"><i class="fas fa-clock"></i></div>
+                    </div>
+                </div>
+
+                <!-- Post-it -->
+                <div class="b-card bc-postit">
+                    <p style="margin: 0; font-size: 13px; font-weight: 800; color: #d97706;"><i class="fas fa-thumbtack"></i> Anotações (Local)</p>
+                    <p style="color:#b45309; font-size:12px; margin-top:10px; line-height: 1.5;">Revisar fila N2 de redes antes do fechamento do SLA.</p>
+                </div>
+
+                <!-- SLA Card -->
+                <div class="b-card bc-sla">
+                    <i class="fas fa-satellite-dish" style="font-size: 28px; color: var(--green); margin-bottom: 10px;"></i>
+                    <div style="font-size: 24px; font-weight: 900; line-height: 1;">Radar SLA</div>
+                    <div style="display: flex; justify-content: center; gap: 20px; margin-top: 15px; border-top: 1px solid var(--mk-border); padding-top: 15px;">
+                        <div><div style="font-size: 22px; font-weight: 900; color:#ef4444;">2</div><div style="font-size: 9px; font-weight: 700; color: var(--mk-muted);">VENCIDOS</div></div>
+                        <div><div style="font-size: 22px; font-weight: 900; color:#f59e0b;">5</div><div style="font-size: 9px; font-weight: 700; color: var(--mk-muted);">A VENCER</div></div>
+                    </div>
+                </div>
+
+                <!-- BI -->
+                <div class="b-card bc-bi">
+                    <div style="font-size: 24px; color: #3b82f6; margin-bottom: 10px;"><i class="fas fa-chart-pie"></i></div>
+                    <p style="font-size: 14px; font-weight: 800; margin:0;">Mini-BI<br>&amp; Dados</p>
+                </div>
+
+                <!-- Utils -->
+                <div class="b-card bc-utils">
+                    <span style="font-size: 12px; color:var(--mk-muted);"><i class="fas fa-cogs" style="font-size: 18px; margin-bottom: 5px;"></i><br>Config.</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAP 04: RADAR FLUTUANTE -->
+    <div class="section">
+        <div class="section-label" style="color:var(--red)">&#9632; Capítulo 04 &mdash; Motor SLA &amp; Widget Flutuante</div>
+        <p class="p-text">O motor V8 faz fetch silencioso na API do ITSM a cada 10s. O resultado é renderizado em um componente Drag &amp; Drop não-intrusivo que acompanha o usuário durante a navegação, disparando bips via Web Audio API em caso de urgência.</p>
+        
+        <div class="mockup-container" style="display: flex; justify-content: center; padding: 60px 20px;">
+            <div class="mockup-header-bar">
+                <div class="mockup-dots"><span></span><span></span><span></span></div>
+                <div class="mockup-title">components/floating-radar.js</div>
+            </div>
+            
+            <div class="floating-radar">
+                <span style="color: var(--green);"><i class="fas fa-satellite-dish" style="margin-right: 5px;"></i> RADAR</span>
+                <span class="tag-red">🔴 2</span>
+                <span class="tag-yel">🟡 5</span>
+                <span style="font-size: 10px; color: var(--mk-muted); margin-left: 5px;"><i class="fas fa-grip-vertical"></i></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAP 05: CATALOGO RPA -->
+    <div class="section">
+        <div class="section-label" style="color:#8b5cf6">&#9632; Capítulo 05 &mdash; Automação (RPA de Respostas)</div>
+        <p class="p-text">Eliminação de redundância. O script captura o DOM da página de chamado (via Regex), extrai variáveis como <code>[NOME]</code>, <code>[CPF]</code> e <code>[TICKET]</code>, e injeta templates prontos na API do editor Kendo UI do sistema.</p>
+        
+        <div class="mockup-container">
+            <div class="mockup-header-bar">
+                <div class="mockup-dots"><span></span><span></span><span></span></div>
+                <div class="mockup-title">components/rpa-catalog.js</div>
+            </div>
+            
+            <div class="rpa-container">
+                <!-- Sidebar -->
+                <div class="rpa-sidebar">
+                    <div class="rpa-search"><i class="fas fa-search" style="margin-right: 8px;"></i> Buscar template...</div>
+                    <div class="rpa-cat">CONTAS DE USUÁRIO</div>
+                    <div class="rpa-item">Criação de Conta</div>
+                    <div class="rpa-item active"><i class="fas fa-star" style="color: #f59e0b; margin-right: 5px;"></i> Reset de Senha</div>
+                    <div class="rpa-item">Bloqueio 20 minutos</div>
+                </div>
+                <!-- Editor Preview -->
+                <div class="rpa-editor">
+                    <div style="font-size: 12px; color: var(--mk-muted);"><i class="fas fa-magic" style="color: var(--green);"></i> Variáveis injetadas.</div>
+                    <div class="rpa-box">
+                        Ticket nº <b>INC-2026-0842</b> - Solicitação para reset de senha.<br><br>
+                        Prezado(a) <b>Lucas Martins Lima</b>,<br><br>
+                        Informamos que a solicitação foi devidamente atendida e o reset de senha da sua conta de rede foi efetuado. O acesso já está normalizado.<br><br>
+                        Atenciosamente,<br>Equipe de Suporte NOC<br>Positivo S+
+                    </div>
+                    <button class="rpa-btn"><i class="fas fa-paper-plane" style="margin-right: 5px;"></i> Injetar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAP 06: TELEMETRIA BI -->
+    <div class="section">
+        <div class="section-label" style="color:#3b82f6">&#9632; Capítulo 06 &mdash; Telemetria e Mini-BI</div>
+        <p class="p-text">O sistema escuta o clique no botão "Salvar" e intercepta os dados do fechamento do chamado. Ele compila um banco de dados temporário no <code>LocalStorage</code>, permitindo visualização de ofensores e exportação de uma tabela Excel nativa.</p>
+        
+        <div class="mockup-container">
+            <div class="mockup-header-bar">
+                <div class="mockup-dots"><span></span><span></span><span></span></div>
+                <div class="mockup-title">components/mini-bi.js</div>
+            </div>
+
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--mk-border); padding-bottom: 15px; margin-bottom: 20px;">
+                <h3 style="margin:0; font-size: 16px; display: flex; align-items: center; gap: 10px;"><i class="fas fa-chart-pie" style="color: #f59e0b;"></i> Telemetria (Turno atual)</h3>
+                <span style="font-size: 11px; font-weight: 700; color: var(--green); background: rgba(31,122,90,0.1); padding: 5px 12px; border-radius: 20px;">42 Finalizados</span>
+            </div>
+
+            <div class="bi-grid">
+                <div class="bi-card">
+                    <h4 style="margin: 0 0 15px 0; color: #f59e0b; font-size: 13px;">🔥 Top Ofensores</h4>
+                    <div class="bi-row"><span>Carlos Silva</span><b style="color: #f59e0b;">12</b></div>
+                    <div class="bi-row"><span>Mariana Costa</span><b style="color: #f59e0b;">8</b></div>
+                </div>
+                <div class="bi-card">
+                    <h4 style="margin: 0 0 15px 0; color: #3b82f6; font-size: 13px;">🎯 Top Incidentes</h4>
+                    <div class="bi-row"><span>Reset de Senha / AD</span><b style="color: #3b82f6;">15</b></div>
+                    <div class="bi-row"><span>Acesso SEI</span><b style="color: #3b82f6;">11</b></div>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: center; margin-top: 25px;">
+                <button style="background: rgba(16, 185, 129, 0.8); color: #fff; border: none; padding: 10px 20px; border-radius: 50px; font-weight: 700; cursor: pointer;"><i class="fas fa-file-excel"></i> Exportar (.XLS)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAP 07: TECNOLOGIAS & TOGGLE INFO -->
+    <div class="section">
+        <div class="section-label" style="color:var(--teal)">&#9632; Capítulo 07 &mdash; Stack Tecnológico &amp; CSS Variables</div>
+        <div class="card">
+            <p class="p-text" style="margin-bottom: 25px;">Toda a interface apresentada utiliza variáveis CSS injetadas no <code>:root</code> da página original. Isso permitiu a criação de um sistema de cores responsivo <strong>Light / Dark Mode</strong> sem recarregar a página.<br><br>💡 <em>Experimente clicar no botão "Modo Noturno / Claro" no topo desta página para ver a troca de escopo funcionando em tempo real.</em></p>
+            
+            <div class="tech-row"><div class="tech-pill" style="color:var(--amber); border-color:var(--amber);">JavaScript ES6+</div><div class="tech-desc">Core logic encapsulada via IIFE, requisições Fetch assíncronas, manipulação de DOM e Regex.</div></div>
+            <div class="tech-row"><div class="tech-pill" style="color:var(--blue); border-color:var(--blue);">Chrome Extension API</div><div class="tech-desc">Injeção cirúrgica de Content Scripts, mantendo a performance da ferramenta V8 isolada.</div></div>
+            <div class="tech-row"><div class="tech-pill" style="color:var(--teal); border-color:var(--teal);">CSS Custom Props</div><div class="tech-desc">Tokens de cor flexíveis (Slate, Emerald, Amber) para o Design System Bento.</div></div>
+        </div>
+    </div>
+
+    <!-- CAP 08: RESULTADOS -->
+    <div class="section">
+        <div class="section-label" style="color:var(--amber)">&#9632; Capítulo 08 &mdash; Impacto e Resultados</div>
+        <div class="grid-3" style="margin-bottom:22px;">
+            <div style="text-align:center; background:var(--card); border:1px solid var(--border); border-radius:16px; padding:22px;">
+                <div style="font-size: 36px; font-weight: 900; color:var(--green);">~70%</div>
+                <div style="font-size: 11px; color:var(--muted); margin-top: 6px;">Redução no tempo de triagem e redação de respostas.</div>
+            </div>
+            <div style="text-align:center; background:var(--card); border:1px solid var(--border); border-radius:16px; padding:22px;">
+                <div style="font-size: 36px; font-weight: 900; color:var(--blue);">100%</div>
+                <div style="font-size: 11px; color:var(--muted); margin-top: 6px;">Visibilidade do SLA crítico com alertas sonoros offline.</div>
+            </div>
+            <div style="text-align:center; background:var(--card); border:1px solid var(--border); border-radius:16px; padding:22px;">
+                <div style="font-size: 36px; font-weight: 900; color:var(--amber);">R$ 0</div>
+                <div style="font-size: 11px; color:var(--muted); margin-top: 6px;">Custo de infraestrutura; solução roda 100% Client-Side.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CAP 09: LEGAL -->
+    <div class="section">
+        <div class="card" style="border: 1px solid rgba(139,92,246,0.3);">
+            <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 15px;">
+                <div style="width: 50px; height: 50px; border-radius: 50%; background: var(--green); color: #fff; font-size: 20px; font-weight: 900; display: flex; align-items: center; justify-content: center;">L</div>
+                <div>
+                    <div style="font-size: 16px; font-weight: 800; color: var(--text);">LUCAS MARTINS LIMA</div>
+                    <div style="font-size: 12px; color: var(--muted);">Analista de Suporte N2 &amp; Desenvolvedor da Solução &middot; Positivo S+ / INCRA</div>
+                </div>
+            </div>
+            <p style="font-size: 12px; color: var(--muted); line-height: 1.6;">Solução de software (RADAR 360), algoritmos de Parser, Motor de SLA e Design System. Obra intelectual protegida pela <strong>Lei de Direitos Autorais (Lei Nº 9.610/98)</strong>.</p>
+        </div>
+    </div>
+
 </div>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<!-- SCRIPT DO TEMA (THEME TOGGLE) -->
 <script>
-/*
-  PORTFÓLIO EM ARQUIVO ÚNICO.
-  Para acrescentar uma formação, duplique um objeto do array credentials.
-  Salve o PDF com o nome indicado em certificateFile dentro da pasta certificados/.
-  QR Codes são usados somente para destinos de credencial ou validação.
-*/
-const credentials = [{"name":"Cybersecurity Fundamentals","issuer":"IBM SkillsBuild","date":"13/11/2026","details":"Conhecimentos fundamentais de cibersegurança.","code":"7d420e2c-29be-4114-aad8-592853aeb365","validationUrl":"https://www.credly.com/earner/earned/badge/7d420e2c-29be-4114-aad8-592853aeb365","validationLabel":"Ver credencial na Credly","qrLabel":"CREDLY · VER CREDENCIAL","badge":"CREDENCIAL DIGITAL","validity":"Não expira","certificateFile":"certificados/ibmcybersecurityfundamentals2026.pdf","qrUrl":"https://www.credly.com/earner/earned/badge/7d420e2c-29be-4114-aad8-592853aeb365","qr":"data:image/png;base64,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"},{"name":"Networking Basics","issuer":"Cisco","date":"12/11/2026","details":"Fundamentos de redes de computadores.","code":"ad0da16f-b66d-4907-917f-2b5fbeed7f6a","validationUrl":"https://www.credly.com/earner/earned/badge/ad0da16f-b66d-4907-917f-2b5fbeed7f6a","validationLabel":"Ver credencial na Credly","qrLabel":"CREDLY · VER CREDENCIAL","badge":"CREDENCIAL DIGITAL","validity":"Não expira","certificateFile":"certificados/cisconetworkingbasics2026.pdf","qrUrl":"https://www.credly.com/earner/earned/badge/ad0da16f-b66d-4907-917f-2b5fbeed7f6a","qr":"data:image/png;base64,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"},{"name":"Explorar o Desktop Empresarial","issuer":"Microsoft Learn","date":"09/12/2025","details":"Módulo concluído com êxito, conforme o histórico de aprendizagem informado.","moduleUrl":"https://learn.microsoft.com/pt-br/users/lucasmartinslima-9846/achievements/print/nmev24pf","moduleLabel":"Consultar conquista no Microsoft Learn","badge":"CURSO CONCLUÍDO","documentLabel":"CERTIFICADO PDF","documentSub":"ARQUIVO A ADICIONAR","certificateFile":"certificados/Conquistas - lucasmartinslima-9846 _ Microsoft Learn2.pdf","altFiles":["certificados/microsoftexplorarodesktopempresarial2025.pdf","certificados/microsoftdesktopempresarial2025.pdf"]},{"name":"Explorar Edições do Windows","issuer":"Microsoft Learn","date":"09/12/2025","details":"Módulo concluído com êxito, conforme o histórico de aprendizagem informado.","moduleUrl":"https://learn.microsoft.com/pt-br/users/lucasmartinslima-9846/achievements/print/zdtbumu2","moduleLabel":"Consultar conquista no Microsoft Learn","badge":"CURSO CONCLUÍDO","documentLabel":"CERTIFICADO PDF","documentSub":"ARQUIVO A ADICIONAR","certificateFile":"certificados/Conquistas - lucasmartinslima-9846 _ Microsoft Learn.pdf","altFiles":["certificados/microsoftexploraredicoesdowindows2025.pdf","certificados/microsoftedicoesdowindows2025.pdf","certificados/microsoftedicoeswindows2025.pdf"]},{"name":"Entender o Microsoft Entra ID","issuer":"Microsoft Learn","date":"05/12/2025","details":"Módulo concluído com êxito, conforme o histórico de aprendizagem informado.","moduleUrl":"https://learn.microsoft.com/pt-br/training/modules/understand-azure-active-directory/","moduleLabel":"Consultar módulo no Microsoft Learn","badge":"CURSO CONCLUÍDO","documentLabel":"CERTIFICADO PDF","documentSub":"ARQUIVO A ADICIONAR","certificateFile":"certificados/microsoftentraid2025.pdf"},{"name":"Introdução ao Azure Cloud Shell","issuer":"Microsoft Learn","date":"04/12/2025","details":"Módulo concluído com êxito, conforme o histórico de aprendizagem informado.","moduleUrl":"https://learn.microsoft.com/pt-br/training/modules/intro-to-azure-cloud-shell/","moduleLabel":"Consultar módulo no Microsoft Learn","badge":"CURSO CONCLUÍDO","documentLabel":"CERTIFICADO PDF","documentSub":"ARQUIVO A ADICIONAR","certificateFile":"certificados/microsoftazurecloudshell2025.pdf"},{"name":"SEI! Usar 4.0","issuer":"Escola Nacional de Administração Pública (ENAP)","date":"03/11/2025","details":"Certificado registrado na Escola Virtual.Gov.","code":"g9M7195429369YFh","validationUrl":"https://www.escolavirtual.gov.br/documentos/validacao","validationLabel":"Validar certificado na EV.G","qrLabel":"EV.G · PORTAL DE VALIDAÇÃO","badge":"CERTIFICADO DE CONCLUSÃO","period":"Período: 30/10/2025 a 29/11/2025","hours":"25 horas","score":"Nota final: 100/100","validity":"Código de validação informado","certificateFile":"certificados/enapseiusar402025.pdf","qrUrl":"https://www.escolavirtual.gov.br/documentos/validacao","qr":"data:image/png;base64,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"},{"name":"Redes de Computadores","issuer":"Instituto Federal de Educação, Ciência e Tecnologia do Rio Grande do Sul (IFRS)","date":"27/10/2025","details":"Curso realizado no âmbito da plataforma Aprenda Mais.","code":"68ff71ee-9e74-4666-8969-7edfac1f03c","validationUrl":"https://aprendamais.mec.gov.br/mod/simplecertificate/verify.php","validationLabel":"Abrir validação no Aprenda Mais","qrLabel":"APRENDA MAIS · VALIDAR CÓDIGO","badge":"CERTIFICADO DE CONCLUSÃO","period":"Período: 20/10/2025 a 27/10/2025","hours":"30 horas","score":"89,29% de aproveitamento","certificateFile":"certificados/ifrsredesdecomputadores2025.pdf","qrUrl":"https://aprendamais.mec.gov.br/mod/simplecertificate/verify.php","qr":"data:image/png;base64,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"}];
-const grid = document.getElementById('credentials-grid');
-const count = document.getElementById('credential-count');
-const toast = document.getElementById('toast');
-const escapeHTML = (value='') => String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+    function toggleTheme() {
+        const html = document.documentElement;
+        const btnIcon = document.querySelector('.theme-toggle i');
+        const btnText = document.querySelector('.theme-toggle');
 
-function iconDocument() {
-  return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M8 13h8M8 17h8"/></svg>';
-}
-function renderMeta(course) {
-  const items = [];
-  if (course.hours) items.push(course.hours);
-  if (course.score) items.push(course.score);
-  if (course.validity) items.push(course.validity);
-  return items.length ? '<div class="course-meta">' + items.map((item,i) => (i ? '<i aria-hidden="true"></i>' : '') + '<span>' + escapeHTML(item) + '</span>').join('') + '</div>' : '';
-}
-function renderCode(course) {
-  if (!course.code) return '';
-  return `<div class="credential-code"><span><small>CÓDIGO / ID</small><code>${escapeHTML(course.code)}</code></span><button class="copy-button" type="button" data-copy="${escapeHTML(course.code)}" aria-label="Copiar código do certificado">Copiar</button></div>`;
-}
-function renderMedia(course) {
-  if (course.qr) return `<div class="qr-wrap"><img src="${course.qr}" alt="QR Code para ${escapeHTML(course.qrLabel || course.name)}" width="106" height="106"><span>${escapeHTML(course.qrLabel || 'ESCANEIE PARA CONSULTAR')}</span></div>`;
-  if (course.pdfAvailable) return `<a class="document-tile is-ready" href="${escapeHTML(course.certificateFile)}" target="_blank" rel="noopener noreferrer" aria-label="Abrir certificado em PDF">${iconDocument()}<strong>ABRIR PDF</strong><small>CERTIFICADO</small></a>`;
-  return `<div class="document-tile" aria-label="Certificado PDF ainda não adicionado">${iconDocument()}<strong>PDF A ADICIONAR</strong><small>ARQUIVO NA PASTA CERTIFICADOS</small></div>`;
-}
-function renderActions(course) {
-  const links = [];
-  if (course.validationUrl) links.push(`<a class="validation-link" href="${escapeHTML(course.validationUrl)}" target="_blank" rel="noopener noreferrer">${escapeHTML(course.validationLabel || 'Consultar credencial')} <span aria-hidden="true">↗</span></a>`);
-  if (course.moduleUrl) links.push(`<a class="validation-link" href="${escapeHTML(course.moduleUrl)}" target="_blank" rel="noopener noreferrer">${escapeHTML(course.moduleLabel || 'Consultar módulo')} <span aria-hidden="true">↗</span></a>`);
-  if (course.qr && course.pdfAvailable) links.push(`<a class="certificate-link" href="${escapeHTML(course.certificateFile)}" target="_blank" rel="noopener noreferrer">Abrir certificado PDF ↗</a>`);
-  return links.length ? `<div class="card-actions">${links.join('')}</div>` : '';
-}
-function renderCard(course) {
-  return `<article class="credential-card"><div class="credential-main"><div class="card-topline"><span class="type-label">${escapeHTML(course.badge || 'CREDENCIAL DIGITAL')}</span><span class="card-date">${escapeHTML(course.date || '')}</span></div><h3>${escapeHTML(course.name)}</h3><p class="issuer">${escapeHTML(course.issuer)}</p>${course.details ? `<p class="course-details">${escapeHTML(course.details)}</p>` : ''}${renderMeta(course)}${course.period ? `<p class="period-note">${escapeHTML(course.period)}</p>` : ''}${renderCode(course)}${renderActions(course)}</div>${renderMedia(course)}</article>`;
-}
-async function pdfExists(path) {
-  if (!path || location.protocol === 'file:') return false;
-  try { const response = await fetch(path, { method: 'HEAD', cache: 'no-store' }); return response.ok; }
-  catch { return false; }
-}
-async function initialize() {
-  await Promise.all(credentials.map(async course => {
-    const candidates = [course.certificateFile, ...(course.altFiles || [])].filter(Boolean);
-    for (const file of candidates) {
-      if (await pdfExists(file)) { course.certificateFile = file; course.pdfAvailable = true; break; }
+        if (html.getAttribute('data-theme') === 'dark') {
+            html.setAttribute('data-theme', 'light');
+            btnIcon.className = 'fas fa-sun';
+            btnIcon.style.color = '#f59e0b';
+            btnText.innerHTML = '<i class="fas fa-sun" style="color: #f59e0b;"></i> Modo Claro';
+        } else {
+            html.setAttribute('data-theme', 'dark');
+            btnIcon.className = 'fas fa-moon';
+            btnIcon.style.color = '#8b5cf6';
+            btnText.innerHTML = '<i class="fas fa-moon" style="color: #8b5cf6;"></i> Modo Noturno';
+        }
     }
-  }));
-  grid.innerHTML = credentials.map(renderCard).join('');
-  count.textContent = String(credentials.length).padStart(2,'0');
-}
-initialize();
-let toastTimer;
-function showToast(message) { toast.textContent = message; toast.classList.add('show'); window.clearTimeout(toastTimer); toastTimer = window.setTimeout(() => toast.classList.remove('show'), 1700); }
-document.addEventListener('click', async event => {
-  const button = event.target.closest('[data-copy]');
-  if (!button) return;
-  const value = button.getAttribute('data-copy');
-  try { await navigator.clipboard.writeText(value); showToast('Código copiado.'); }
-  catch {
-    const field = document.createElement('textarea'); field.value = value; field.style.position = 'fixed'; field.style.opacity = '0'; document.body.appendChild(field); field.select();
-    const ok = document.execCommand('copy'); field.remove(); showToast(ok ? 'Código copiado.' : 'Não foi possível copiar automaticamente.');
-  }
-});
-
-const themeToggle = document.getElementById('theme-toggle');
-const themeIcon = document.getElementById('theme-icon');
-const themeLabel = document.getElementById('theme-label');
-const themeMeta = document.querySelector('meta[name="theme-color"]');
-const moonPath = '<path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>';
-const sunPath = '<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"/>';
-
-function syncThemeUI(isDark) {
-  themeToggle.setAttribute('aria-pressed', String(isDark));
-  themeToggle.setAttribute('aria-label', isDark ? 'Ativar modo claro' : 'Ativar modo noturno');
-  themeLabel.textContent = isDark ? 'Modo claro' : 'Modo noturno';
-  themeIcon.innerHTML = isDark ? sunPath : moonPath;
-  if (themeMeta) themeMeta.setAttribute('content', isDark ? '#0d1117' : '#f7f8fa');
-}
-
-syncThemeUI(document.documentElement.getAttribute('data-theme') === 'dark');
-
-themeToggle.addEventListener('click', () => {
-  const isDark = document.documentElement.getAttribute('data-theme') !== 'dark';
-  if (isDark) {
-    document.documentElement.setAttribute('data-theme', 'dark');
-    localStorage.setItem('theme', 'dark');
-  } else {
-    document.documentElement.removeAttribute('data-theme');
-    localStorage.setItem('theme', 'light');
-  }
-  syncThemeUI(isDark);
-});
 </script>
+
 </body>
 </html>
